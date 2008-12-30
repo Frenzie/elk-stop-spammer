@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>M-DVD:StopSpammer</id>
+	<name>Stop Spammer</name>
+	<version>1.0</version>
+
+	<file name="$languagedir/Modifications.english.php">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
+$txt['stopspammer_count'] = 'Spammers have been blocked';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.english-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
+$txt['stopspammer_count'] = 'Spammers have been blocked';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.english_british.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
+$txt['stopspammer_count'] = 'Spammers have been blocked';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
+$txt['stopspammer_count'] = 'Spammers have been blocked';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish_es.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish_es-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish_latin.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.spanish_latin-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+				<add><![CDATA[
+//	MOD Stop Spammer
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
+$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
+$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+		</operation>
+	</file>
+
+</modification>

@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>M-DVD:StopSpammer</id>
+	<name>Stop Spammer</name>
+	<version>1.0</version>
+
+	<file name="$sourcedir/Subs-Members.php">
+		<operation>
+			<search position="replace"><![CDATA[
+			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login,]]></search>
+			<add><![CDATA[
+			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login, is_spammer,]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageMembers.php">
+<!--- First List - List All Member - BEGIN --->
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'member_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData[\'member_name\'], $url, $rowData[\'is_spammer\'], 2);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'real_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData[\'member_name\'], $url, $rowData[\'is_spammer\'], 0);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="mailto:%1$s">%1$s</a>',
+						'params' => array(
+							'email_address' => true,
+						),
+					),
+					'class' => 'windowbg',]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = \'mailto:\' . $rowData[\'email_address\'];
+						return sprintfspamer($rowData[\'email_address\'], $url, $rowData[\'is_spammer\'], 3);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
+						'params' => array(
+							'member_ip' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
+						return sprintfspamer($rowData[\'member_ip\'], $url, $rowData[\'is_spammer\'], 1);
+					'),]]></add>
+		</operation>
+<!--- First List - List All Member - END --->
+<!--- Second List - List Member Waiting Aproval - BEGIN --->
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'member_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData[\'member_name\'], $url, $rowData[\'is_spammer\'], 2);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="mailto:%1$s">%1$s</a>',
+						'params' => array(
+							'email_address' => true,
+						),
+					),
+					'class' => 'windowbg',]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = \'mailto:\' . $rowData[\'email_address\'];
+						return sprintfspamer($rowData[\'email_address\'], $url, $rowData[\'is_spammer\'], 3);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
+						'params' => array(
+							'member_ip' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
+						return sprintfspamer($rowData[\'member_ip\'], $url, $rowData[\'is_spammer\'], 1);
+					'),]]></add>
+		</operation>
+<!--- Second List - List Member Waiting Aproval - END --->
+		<operation>
+			<search position="after"><![CDATA[
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="float:left">]]></search>
+			<add><![CDATA[
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
+				'class' => 'titlebg',
+			),]]></add>
+		</operation>
+
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+function sprintfspamer($value, $url, $is_spamer, $type)
+{
+	global $txt, $settings;
+
+	$format1 = ($is_spamer && $is_spamer >> ($type - 1) & 1)
+		? '<a href="http://www.stopforumspam.com/search?q=' . $value . '" target="_blank"><img src="' . $settings['images_url'] . '/icons/spammer.gif" alt="[' . $txt['manage_search'] . ']" title="' . $txt['stopspammer_title'] . '" style="vertical-align: middle" /></a>'
+		: '';
+	$format2 = $is_spamer ? array('<span class="error">', '</span>') : array('', '');
+
+	return $format1 . '<a href="'. $url . '">' . implode($value, $format2) . '</a>';
+}
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Register.php">
+		<operation>
+			<search position="after"><![CDATA[
+	// Include the additional options that might have been filled in.]]></search>
+			<add><![CDATA[
+	// Is Spammer? Then should be approval
+	if ($regOptions['spammer'] = chekDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
+		{
+		$regOptions['require'] = 'approval';
+		$modSettings['registration_method'] = 2;
+		updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+		}
+]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+// This function will display the contact information for the forum, as well a form to fill in.]]></search>
+			<add><![CDATA[
+// This function Check Spammer in DB - MOD StopSpammer
+function chekDBSpammer($check_ip, $check_name, $check_mail)
+{
+	global $sourcedir;
+
+	$remoteXML = 'http://www.stopforumspam.com/api?ip=' . $check_ip . '&username=' . $check_name . '&email=' . $check_mail;
+
+	// Try to download.
+	require_once($sourcedir . '/Subs-Package.php');
+	$down_ok = fetch_web_data($remoteXML);
+
+	// Connection Failed
+	if (!$down_ok)
+		fatal_lang_error('stopspammer_error');
+
+	// Procesing XML
+	preg_match_all('~<type>(\w+)</type>\n<appears>(\w+)</appears>~', $down_ok, $q_is_spammer);
+
+	$suma = 0;
+	foreach ($q_is_spammer[1] as $key => $value)
+		$suma += ('yes' == $q_is_spammer[2][$key]) * ('ip' == $value ? 1 : ('username' == $value ? 2 : 4));
+
+	return $suma;
+}
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Subs.php">
+		<operation>
+			<search position="replace"><![CDATA[
+			$context['unapproved_members'] = !empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2 ? $modSettings['unapprovedMembers'] : 0;]]></search>
+			<add><![CDATA[
+			$context['unapproved_members'] = $modSettings['unapprovedMembers'];]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/Subs-Members.php">
+		<operation>
+			<search position="after"><![CDATA[
+		'validation_code' => $validation_code,]]></search>
+			<add><![CDATA[
+		'is_spammer' => $regOptions['spammer'],]]></add>
+		</operation>
+	</file>
+
+</modification>
