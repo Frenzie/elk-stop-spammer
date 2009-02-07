@@ -2,7 +2,7 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>1.0</version>
+	<version>2.1</version>
 */
 global $smcFunc;
 
@@ -25,7 +25,13 @@ $smcFunc['db_add_column'](
 $smcFunc['db_insert']('ignore',
 			'{db_prefix}settings',
 			array('variable' => 'string','value' => 'string'),
-			array('stopspammer_count', '0'),
+			array(
+				array ('stopspammer_count' ,'0'),
+				array ('stopspammer_enable','1'),
+				array ('stopspammer_show01','1'),
+				array ('stopspammer_faildb','2')
+			),
 			array()
 		);
+
 ?>

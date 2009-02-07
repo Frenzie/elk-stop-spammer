@@ -3,106 +3,340 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>1.0</version>
+	<version>2.1</version>
 
 	<file name="$languagedir/Modifications.english.php">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
-$txt['stopspammer_count'] = 'Spammers have been blocked';
-$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.<br />
+Please try again later, or Contact with the WebMaster';
+$txt['stopspammer_count'] = 'Spammers have been blocked to date';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Enable/Disable MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Show Link "More Info" for All Member';
+$txt['stopspammer_show01_sub'] = 'You can check any member at any time with one simple click';
+
+$txt['stopspammer_faildb'] = 'If the Connection Fail with DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Show Error and Stop Registration';
+$txt['stopspammer_fail02'] = 'Allow Immediate Registration';
+$txt['stopspammer_fail03'] = 'Member Approval and show icon for check';
+$txt['stopspammer_faildb1_sub'] = 'Your host can make remote connection to the DB';
+$txt['stopspammer_faildb2_sub'] = 'Your host couldn\'t make connection to the DB, Try again later<br />
+If it continue see Topic of Support and search ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
+$txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
+$txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
+$txt['spammers_checks'] = 'Check these Members';
+$txt['spammers_report'] = 'Report these Members';
+$txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english-utf8.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
-$txt['stopspammer_count'] = 'Spammers have been blocked';
-$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.<br />
+Please try again later, or Contact with the WebMaster';
+$txt['stopspammer_count'] = 'Spammers have been blocked to date';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Enable/Disable MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Show Link "More Info" for All Member';
+$txt['stopspammer_show01_sub'] = 'You can check any member at any time with one simple click';
+
+$txt['stopspammer_faildb'] = 'If the Connection Fail with DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Show Error and Stop Registration';
+$txt['stopspammer_fail02'] = 'Allow Immediate Registration';
+$txt['stopspammer_fail03'] = 'Member Approval and show icon for check';
+$txt['stopspammer_faildb1_sub'] = 'Your host can make remote connection to the DB';
+$txt['stopspammer_faildb2_sub'] = 'Your host couldn\'t make connection to the DB, Try again later<br />
+If it continue see Topic of Support and search ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
+$txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
+$txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
+$txt['spammers_checks'] = 'Check these Members';
+$txt['spammers_report'] = 'Report these Members';
+$txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english_british.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
-$txt['stopspammer_count'] = 'Spammers have been blocked';
-$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.<br />
+Please try again later, or Contact with the WebMaster';
+$txt['stopspammer_count'] = 'Spammers have been blocked to date';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Enable/Disable MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Show Link "More Info" for All Member';
+$txt['stopspammer_show01_sub'] = 'You can check any member at any time with one simple click';
+
+$txt['stopspammer_faildb'] = 'If the Connection Fail with DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Show Error and Stop Registration';
+$txt['stopspammer_fail02'] = 'Allow Immediate Registration';
+$txt['stopspammer_fail03'] = 'Member Approval and show icon for check';
+$txt['stopspammer_faildb1_sub'] = 'Your host can make remote connection to the DB';
+$txt['stopspammer_faildb2_sub'] = 'Your host couldn\'t make connection to the DB, Try again later<br />
+If it continue see Topic of Support and search ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
+$txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
+$txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
+$txt['spammers_checks'] = 'Check these Members';
+$txt['spammers_report'] = 'Report these Members';
+$txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.';
-$txt['stopspammer_count'] = 'Spammers have been blocked';
-$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error with DB Anti SPAM. Connection Failed.<br />
+Please try again later, or Contact with the WebMaster';
+$txt['stopspammer_count'] = 'Spammers have been blocked to date';
+$txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Enable/Disable MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Show Link "More Info" for All Member';
+$txt['stopspammer_show01_sub'] = 'You can check any member at any time with one simple click';
+
+$txt['stopspammer_faildb'] = 'If the Connection Fail with DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Show Error and Stop Registration';
+$txt['stopspammer_fail02'] = 'Allow Immediate Registration';
+$txt['stopspammer_fail03'] = 'Member Approval and show icon for check';
+$txt['stopspammer_faildb1_sub'] = 'Your host can make remote connection to the DB';
+$txt['stopspammer_faildb2_sub'] = 'Your host couldn\'t make connection to the DB, Try again later<br />
+If it continue see Topic of Support and search ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
+$txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
+$txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
+$txt['spammers_checks'] = 'Check these Members';
+$txt['spammers_report'] = 'Report these Members';
+$txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.<br />
+Por favor, intente más tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar más info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podrás revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexión con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobación con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexión remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexión, intenta luego<br />Si continúa revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver más info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish-utf8.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.<br />
+Por favor, intente m&aacute;s tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar m&aacute;s info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podr&aacute;s revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexi&oacute;n con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci&oacute;n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi&oacute;n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi&oacute;n, intenta luego<br />Si contin&uacute;a revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_es.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.<br />
+Por favor, intente más tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar más info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podrás revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexión con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobación con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexión remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexión, intenta luego<br />Si continúa revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver más info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_es-utf8.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.<br />
+Por favor, intente m&aacute;s tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar m&aacute;s info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podr&aacute;s revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexi&oacute;n con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci&oacute;n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi&oacute;n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi&oacute;n, intenta luego<br />Si contin&uacute;a revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_latin.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver más información en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexión Fallida.<br />
+Por favor, intente más tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar más info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podrás revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexión con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobación con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexión remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexión, intenta luego<br />Si continúa revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver más info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_latin-utf8.php" error="skip">
 		<operation>
 			<search position="end" />
-				<add><![CDATA[
+			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.';
-$txt['stopspammer_count'] = 'Spammers han sido bloqueados';
-$txt['stopspammer_title'] = 'Ver m&aacute;s informaci&oacute;n en `Stop Forum Spam`';]]></add>
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi&oacute;n Fallida.<br />
+Por favor, intente m&aacute;s tarde o Contacte con el Web-Master';
+$txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
+$txt['stopspammer_title'] = 'Buscar m&aacute;s info en `Stop Forum Spam`';
+
+$txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
+$txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
+$txt['stopspammer_show01_sub'] = 'Podr&aacute;s revisar cualquier usuario en cualquier momento con un click';
+
+$txt['stopspammer_faildb'] = 'Si falla la  conexi&oacute;n con la DB Anti SPAM...';
+$txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
+$txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci&oacute;n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi&oacute;n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi&oacute;n, intenta luego<br />Si contin&uacute;a revisa el tema de soporte y busca ';
+$txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
+
+$txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
+$txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
+
+$txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
+$txt['spammers_checks'] = 'Revisar Usuarios';
+$txt['spammers_report'] = 'Reportar Usuarios';
+$txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
 		</operation>
 	</file>
 

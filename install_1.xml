@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>1.0</version>
+	<version>2.1</version>
 
 	<file name="$themedir/ManageMembers.template.php">
 		<operation>
@@ -22,16 +22,16 @@
 				</td>]]></search>
 			<add><![CDATA[
 				<td class="windowbg2">
-					', sprintfspamer($member['username'], $member['href'], $member['spammer'], 2), '
+					', sprintfspamer($member, $member['href'], 'username', 2), '
 				</td>
 				<td class="windowbg2">
-					', sprintfspamer($member['username'], $member['href'], $member['spammer'], 0), '
+					', sprintfspamer($member, $member['href'], 'name', 0), '
 				</td>
 				<td class="windowbg">
-					', sprintfspamer($member['email'], 'mailto:'.$member['email'], $member['spammer'], 3), '
+					', sprintfspamer($member, 'mailto:'.$member['email'], 'email', 3), '
 				</td>
 				<td class="windowbg2">
-					', sprintfspamer($member['ip'], $scripturl.'?action=trackip;searchip='.$member['ip'], $member['spammer'], 1), '
+					', sprintfspamer($member, $scripturl.'?action=trackip;searchip='.$member['ip'], 'ip', 1), '
 				</td>]]></add>
 		</operation>
 
@@ -44,14 +44,48 @@
 				<td class="windowbg2"><a href="', $scripturl, '?action=trackip;searchip=', $member['ip'], '">', $member['ip'], '</a></td>]]></search>
 			<add><![CDATA[
 				<td class="windowbg2">
-					', sprintfspamer($member['username'], $member['href'], $member['spammer'], 2), '
+					', sprintfspamer($member, $member['href'], 'username', 2), '
 				</td>
 				<td class="windowbg">
-					', sprintfspamer($member['email'], 'mailto:'.$member['email'], $member['spammer'], 3), '
+					', sprintfspamer($member, 'mailto:'.$member['email'], 'email', 3), '
 				</td>
 				<td class="windowbg2">
-					', sprintfspamer($member['ip'], $scripturl.'?action=trackip;searchip='.$member['ip'], $member['spammer'], 1), '
+					', sprintfspamer($member, $scripturl.'?action=trackip;searchip='.$member['ip'], 'ip', 1), '
 				</td>]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+function template_view_members()
+{
+	global $context, $settings, $options, $txt, $scripturl;]]></search>
+			<add><![CDATA[
+function template_view_members()
+{
+	global $context, $settings, $options, $txt, $scripturl, $modSettings;]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+			<tr>
+				<td class="windowbg2" align="right"]]></search>
+			<add><![CDATA[
+			', (!$modSettings['stopspammer_enable'] ? '' : '<tr class="titlebg">
+				<td colspan="8">
+					<div style="width: 60%; margin: auto" class="leyend_stopspammer">
+						<img src="' . $settings['images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $settings['images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $settings['images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="windowbg2" align="right" colspan="8">
+					<label>' . $txt['in_stop_forum_spam'] . '</label>
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />
+				</td>
+			</tr>'), ']]></add>
 		</operation>
 
 		<operation>
@@ -59,26 +93,106 @@
 			<tr class="windowbg2">
 				<td align="right" colspan="6">]]></search>
 			<add><![CDATA[
+			', (!$modSettings['stopspammer_enable'] ? '' : '<tr class="titlebg">
+				<td align="center" colspan="6">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</td>
+			</tr>
 			<tr class="titlebg">
-				<td align="center" colspan="6">', $modSettings['stopspammer_count'] ,' ' , $txt['stopspammer_count'], '</td>
-			</tr>]]></add>
+				<td colspan="6">
+					<div style="width: 60%; margin: auto" class="leyend_stopspammer">
+						<img src="' . $settings['images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $settings['images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $settings['images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+					</div>
+				</td>
+			</tr>'), ']]></add>
 		</operation>
 
 		<operation>
 			<search position="end" />
 			<add><![CDATA[
-function sprintfspamer($value, $url, $is_spamer, $type)
+function sprintfspamer($value, $url, $index, $type)
 {
-	global $txt, $settings;
+	global $txt, $settings, $modSettings;
 
-	$format1 = ($is_spamer && $is_spamer >> ($type - 1) & 1)
-		? '<a href="http://www.stopforumspam.com/search?q=' . $value . '" target="_blank"><img src="' . $settings['images_url'] . '/icons/spammer.gif" alt="[' . $txt['manage_search'] . ']" title="' . $txt['stopspammer_title'] . '" style="vertical-align: middle" /></a>'
-		: '';
-	$format2 = $is_spamer ? array('<span class="error">', '</span>') : array('', '');
+	$is_spamer = (!$modSettings['stopspammer_enable'] || 3 != $value['is_activated']) ? 0 : $value['is_spammer'];
 
-	return $format1 . '<a href="'. $url . '">' . implode($value, $format2) . '</a>';
+	$format1 = $modSettings['stopspammer_enable'] && $type && (($bol_1 = $is_spamer >> ($type - 1) & 1) || ($bol_2 = 8 == $is_spamer) || $modSettings['stopspammer_show01'])
+		? '<a href="http://www.stopforumspam.com/search?q=' . urlencode($value[$index]) . '" target="_blank"><img src="' . $settings['images_url'] . '/icons/' . ($bol_1 ? 'spammer' : ($bol_2 ? 'suspect' : 'moreinfo')) . '.gif" alt="[' . $txt['manage_search'] . ']" title="' . $txt['stopspammer_title'] . '" style="vertical-align: middle" /></a>' : '';
+
+	$format2 = $is_spamer % 8 ? array('<span class="error">', '</span>') : array('', '');
+
+	return $format1 . '<a href="'. $url . '">' . implode($value[$index], $format2) . '</a>';
 }
 ]]></add>
+		</operation>
+	</file>
+
+	<file name="$themedir/Register.template.php">
+		<operation>
+			<search position="replace"><![CDATA[
+function template_admin_settings()
+{
+	global $context, $settings, $options, $scripturl, $txt, $modSettings;]]></search>
+			<add><![CDATA[
+function template_admin_settings()
+{
+	global $context, $settings, $options, $scripturl, $txt, $modSettings, $sourcedir;
+
+	require_once($sourcedir . '/Subs-Members.php');
+	$stopspammer_faildb_sub = checkDBSpammer('127.0.0.1', 'Test_Conection_DB', 'xxx@xxx.com', true)
+		? '<span style="color: #008000">' . $txt['stopspammer_faildb1_sub'] . '</span>'
+		: '<span class="error">'.$txt['stopspammer_faildb2_sub'].$txt['stopspammer_not_translate'].'</span>';]]></add>
+		</operation>
+
+		<operation>
+			<search position="before"><![CDATA[
+								<input type="text" name="coppaPhone" id="coppaPhone_input" value="', !empty($modSettings['coppaPhone']) ? $modSettings['coppaPhone'] : '', '" size="22" maxlength="35" />
+							</td>
+						</tr>]]></search>
+			<add><![CDATA[<tr class="windowbg2">
+							<td width="100%" colspan="2" align="center">
+								<hr />
+							</td>
+						</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_enable">', $txt['stopspammer_enable'], '</label>:
+						</th>
+						<td valign="top">
+							<input type="checkbox" name="stopspammer_enable" id="stopspammer_enable"', empty($modSettings['stopspammer_enable']) ? '' : ' checked="checked"', ' class="check" />
+						</td>
+					</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_faildb">', $txt['stopspammer_faildb'], '</label>:
+							<div class="smalltext" style="font-weight: normal;">', $stopspammer_faildb_sub, '</div>
+						</th>
+						<td valign="top">
+							<select name="stopspammer_faildb" id="stopspammer_faildb" >
+								<option value="0" ', ('0' == $modSettings['stopspammer_faildb'] ? 'selected="selected"' : '') , '>', $txt['stopspammer_fail01'], '</option>
+								<option value="1" ', ('1' == $modSettings['stopspammer_faildb'] ? 'selected="selected"' : '') , '>', $txt['stopspammer_fail02'], '</option>
+								<option value="2" ', ('2' == $modSettings['stopspammer_faildb'] ? 'selected="selected"' : '') , '>', $txt['stopspammer_fail03'], '</option>
+							</select>
+						</td>
+					</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_show01">', $txt['stopspammer_show01'], '</label>:
+							<div class="smalltext" style="font-weight: normal;">', $txt['stopspammer_show01_sub'], '</div>
+						</th>
+						<td valign="top">
+							<input type="checkbox" name="stopspammer_show01" id="stopspammer_show01"', empty($modSettings['stopspammer_show01']) ? '' : ' checked="checked"', ' class="check" />
+						</td>
+					</tr>]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageRegistration.php">
+		<operation>
+			<search position="before"><![CDATA[
+			'coppaPhone' => !empty($_POST['coppaPhone']) ? $_POST['coppaPhone'] : '',]]></search>
+			<add><![CDATA[
+			'stopspammer_enable' => empty($_POST['stopspammer_enable']) ? '0' : '1',
+			'stopspammer_show01' => empty($_POST['stopspammer_show01']) ? '0' : '1',
+			'stopspammer_faildb' => ereg('[0-2]', $_POST['stopspammer_faildb']) ? $_POST['stopspammer_faildb'] : '0',
+			'stopspammer_show02' => empty($_POST['stopspammer_show02']) ? '0' : '1',]]></add>
 		</operation>
 	</file>
 
@@ -87,14 +201,15 @@ function sprintfspamer($value, $url, $is_spamer, $type)
 			<search position="replace"><![CDATA[
 		SELECT ID_MEMBER, memberName, emailAddress, memberIP, dateRegistered]]></search>
 			<add><![CDATA[
-		SELECT ID_MEMBER, memberName, emailAddress, memberIP, dateRegistered, is_spammer]]></add>
+		SELECT ID_MEMBER, memberName, emailAddress, memberIP, dateRegistered, is_activated, is_spammer]]></add>
 		</operation>
 
 		<operation>
 			<search position="before"><![CDATA[
 			'dateRegistered' => timeformat($row['dateRegistered']),]]></search>
 			<add><![CDATA[
-			'spammer' => $row['is_spammer'],]]></add>
+			'is_spammer' => $row['is_spammer'],
+			'is_activated' => $row['is_activated'],]]></add>
 		</operation>
 
 		<operation>
@@ -108,7 +223,44 @@ function sprintfspamer($value, $url, $is_spamer, $type)
 			<search position="before"><![CDATA[
 			'is_activated' => $row['is_activated'] % 10 == 1,]]></search>
 			<add><![CDATA[
-			'spammer' => $row['is_spammer'],]]></add>
+			'is_spammer' => $row['is_spammer'],]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+	global $txt, $scripturl, $db_prefix, $context, $modSettings, $sourcedir;]]></search>
+			<add><![CDATA[
+	global $txt, $scripturl, $db_prefix, $context, $modSettings, $sourcedir, $ID_MEMBER;]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+	// Are we performing a delete?]]></search>
+			<add><![CDATA[
+	// Are we performing a check or report?
+	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))
+	{
+		checkSession();
+
+		// Clean the input.
+		foreach ($_POST['delete'] as $key => $value)
+		{
+			$_POST['delete'][$key] = (int) $value;
+			// Don't report yourself, idiot :P
+			if ($value == $ID_MEMBER || '1' == $value)
+				unset($_POST['delete'][$key]);
+		}
+
+		$modSettings['registration_method'] = 2;
+
+		if (!empty($_POST['delete']))
+		{
+			// Check and/or Report This Members
+			require_once($sourcedir . '/Subs-Members.php');
+			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
+		}
+	}
+]]></add>
 		</operation>
 	</file>
 
@@ -118,43 +270,15 @@ function sprintfspamer($value, $url, $is_spamer, $type)
 	// Include the additional options that might have been filled in.]]></search>
 			<add><![CDATA[
 	// Is Spammer? Then should be approval
-	if ($regOptions['spammer'] = chekDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
+	if ($modSettings['stopspammer_enable'] && $regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
 		{
 		$regOptions['require'] = 'approval';
 		$modSettings['registration_method'] = 2;
-		updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+		if ($regOptions['spammer'] != 8)
+			updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
 		}
-]]></add>
-		</operation>
-
-		<operation>
-			<search position="after"><![CDATA[
-// This function will display the contact information for the forum, as well a form to fill in.]]></search>
-			<add><![CDATA[
-// This function Check Spammer in DB - MOD StopSpammer
-function chekDBSpammer($check_ip, $check_name, $check_mail)
-{
-	global $sourcedir;
-
-	$remoteXML = 'http://www.stopforumspam.com/api?ip=' . $check_ip . '&username=' . $check_name . '&email=' . $check_mail;
-
-	// Try to download.
-	require_once($sourcedir . '/Subs-Package.php');
-	$down_ok = fetch_web_data($remoteXML);
-
-	// Connection Failed
-	if (!$down_ok)
-		fatal_lang_error('stopspammer_error');
-
-	// Procesing XML
-	preg_match_all('~<type>(\w+)</type>\n<appears>(\w+)</appears>~', $down_ok, $q_is_spammer);
-
-	$suma = 0;
-	foreach ($q_is_spammer[1] as $key => $value)
-		$suma += ('yes' == $q_is_spammer[2][$key]) * ('ip' == $value ? 1 : ('username' == $value ? 2 : 4));
-
-	return $suma;
-}
+	else
+		$regOptions['spammer'] = 0;
 ]]></add>
 		</operation>
 	</file>
@@ -174,6 +298,75 @@ function chekDBSpammer($check_ip, $check_name, $check_mail)
 		'validation_code' => "'$validation_code'",]]></search>
 			<add><![CDATA[
 		'is_spammer' => $regOptions['spammer'],]]></add>
+		</operation>
+
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// This function Check Spammer in DB - MOD StopSpammer
+function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
+{
+	global $sourcedir, $modSettings;
+
+	$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? "ip={$check_ip}&" : '') . 'username=' . urlencode($check_name) . '&email=' . $check_mail;
+
+	// Try to download.
+	require_once($sourcedir . '/Subs-Package.php');
+	$down_ok = fetch_web_data($remoteXML);
+
+	// Test Host Connection
+	if ($test) return (bool)$down_ok;
+
+	// Connection Failed
+	if (!$down_ok)
+		if ($modSettings['stopspammer_faildb']) 
+			return ('1' == $modSettings['stopspammer_faildb'] ? 0 : 8);
+		else 
+			fatal_lang_error('stopspammer_error');
+
+	// Procesing XML
+	preg_match_all('~<type>(\w+)</type>\n<appears>(\w+)</appears>~', $down_ok, $q_is_spammer);
+
+	$suma = 0;
+	foreach ($q_is_spammer[1] as $key => $value)
+		$suma += ('yes' == $q_is_spammer[2][$key]) << ('ip' == $value ? 0 : ('username' == $value ? 1 : 2));
+
+	return $suma;
+}
+
+// This function Check & Report Many Members in DB Spammer - MOD StopSpammer
+function checkreportMembers($users, $report)
+{
+	global $db_prefix, $sourcedir, $modSettings;
+
+	if ($report)
+		require_once($sourcedir . '/Subs-Package.php');
+
+	// Read data of Group Users
+	$resource = db_query("
+		SELECT ID_MEMBER, memberName, emailAddress, memberIP, is_spammer
+			FROM {$db_prefix}members
+			WHERE ID_MEMBER " . (is_array($users) ? 'IN (' . implode(',', $users) . ')' : '= ' . $users)
+		, __FILE__, __LINE__);
+
+	// Try Send Report AND/OR Check Users, Neutralize and Update Data Spammer
+	while ($row = mysql_fetch_assoc($resource))
+	{
+		if ($report)
+			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['memberName'] . '&ip_addr=' . $row['memberIP'] . '&email=' . $row['emailAddress'] . '&api_key=O0Ys3RHtDZPMfB');
+
+		if ($row['is_spammer'] != $is_spammer = 
+			checkDBSpammer($row['memberIP'], $row['memberName'], $row['emailAddress']))
+			{
+				updateMemberData($row['ID_MEMBER'], array('is_activated' => 3, 'is_spammer' => $is_spammer));
+				++$modSettings['stopspammer_count'];
+			}
+	}
+	updateSettings(array('stopspammer_count' => $modSettings['stopspammer_count']), true);
+
+	mysql_free_result($resource);
+}
+]]></add>
 		</operation>
 	</file>
 
