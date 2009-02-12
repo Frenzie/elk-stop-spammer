@@ -1,9 +1,9 @@
-[b]MOD Stop Spammer v2.1
+[b]MOD Stop Spammer v2.2
 =================[/b]
 
 [table][tr][td][table][tr][td][+][b]Autor:[/b][/td][td][b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=148997]M-DVD[/url][/b][/td][/tr]
 
-[tr][td][+][b]Version:[/b][/td][td]2.1[/td][/tr]
+[tr][td][+][b]Version:[/b][/td][td]2.2[/td][/tr]
 
 [tr][td][+][b]Release:[/b][/td][td]06th December 2008[/td][/tr]
 
@@ -18,8 +18,9 @@ SMF 2 Beta 3 & 4 & RC1[/td][/tr][/table][/td]
 [/table]
 [/td][/tr][/table]
 
-[list][li][b]Update v2.0: [url=http://www.simplemachines.org/community/index.php?topic=283309.msg1920829#msg1920829][color=green]Read More[/color][/url][/b][/li][/list]
 [list][li][b][url=http://www.simplemachines.org/community/index.php?topic=283309.msg1920848#msg1920848][color=green]Read FAQ[/color][/url][/b][/li][/list]
+[list][li][b]Update v2.1: [url=http://www.simplemachines.org/community/index.php?topic=283309.msg1920829#msg1920829][color=green]Read More[/color][/url][/b][/li][/list]
+[list][li][b]Update v2.2: [url=http://www.simplemachines.org/community/index.php?topic=283309.msg1930572#msg1930572][color=green]Read More[/color][/url][/b][/li][/list]
 
 [b]Features:[/b]
 
@@ -79,7 +80,7 @@ $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';[/php]
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS he/she is marked as spammer all over the world\nand he/she won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';[/php]
 
 [url=http://www.simplemachines.org/community/index.php?action=post;topic=283309.0][color=navy][b]I welcome new translations here[/b][/color][/url]
 

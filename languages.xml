@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.1</version>
+	<version>2.2</version>
 
 	<file name="$languagedir/Modifications.english.php">
 		<operation>
@@ -36,7 +36,7 @@ $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS he/she is marked as spammer all over the world\nand he/she won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english-utf8.php" error="skip">
@@ -70,7 +70,7 @@ $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS he/she is marked as spammer all over the world\nand he/she won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english_british.php" error="skip">
@@ -104,7 +104,7 @@ $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS he/she is marked as spammer all over the world\nand he/she won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
@@ -138,7 +138,7 @@ $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?';]]></add>
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS he/she is marked as spammer all over the world\nand he/she won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish.php" error="skip">
@@ -171,7 +171,7 @@ $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish-utf8.php" error="skip">
@@ -204,7 +204,7 @@ $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_es.php" error="skip">
@@ -237,7 +237,7 @@ $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_es-utf8.php" error="skip">
@@ -270,7 +270,7 @@ $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_latin.php" error="skip">
@@ -303,7 +303,7 @@ $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '¿Estás seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_latin-utf8.php" error="skip">
@@ -336,7 +336,7 @@ $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
 $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro que deseas reportar estos usuarios?';]]></add>
+$txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 

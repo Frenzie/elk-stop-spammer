@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.1</version>
+	<version>2.2</version>
 
 	<file name="$sourcedir/ManageRegistration.php">
 		<operation>
@@ -271,8 +271,6 @@ function sprintfspamer($value, $url, $index, $type)
 		if ($regOptions['spammer'] != 8)
 			updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
 		}
-	else
-		$regOptions['spammer'] = 0;
 ]]></add>
 		</operation>
 	</file>
@@ -291,7 +289,7 @@ function sprintfspamer($value, $url, $index, $type)
 			<search position="after"><![CDATA[
 		'validation_code' => $validation_code,]]></search>
 			<add><![CDATA[
-		'is_spammer' => $regOptions['spammer'],]]></add>
+		'is_spammer' => empty($regOptions['spammer']) ? 0 : $regOptions['spammer'],]]></add>
 		</operation>
 
 		<operation>
