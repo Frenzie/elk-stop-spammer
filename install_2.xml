@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.2</version>
+	<version>2.3</version>
 
 	<file name="$sourcedir/ManageRegistration.php">
 		<operation>
@@ -11,10 +11,10 @@
 	require_once($sourcedir . '/ManageServer.php');
 ]]></search>
 			<add><![CDATA[
-	require_once($sourcedir . '/Subs-Members.php');
+	require_once($sourcedir . '/StopSpammer.php');
 	$stopspammer_faildb_sub = checkDBSpammer('127.0.0.1', 'Test_Conection_DB', 'xxx@xxx.com', true)
 		? '<span style="color: #008000">' . $txt['stopspammer_faildb1_sub'] . '</span>'
-		: '<span class="error">'.$txt['stopspammer_faildb2_sub'].$txt['stopspammer_not_translate'].'</span>';
+		: '<span class="error">' . $txt['stopspammer_faildb2_sub'] . $txt['stopspammer_not_translate'] . '</span>';
 ]]></add>
 		</operation>
 
@@ -31,6 +31,19 @@
 	</file>
 
 	<file name="$sourcedir/ManageMembers.php">
+		<operation>
+			<search position="before"><![CDATA[
+	$_REQUEST['sa'] = isset($_REQUEST['sa']) && isset($subActions[$_REQUEST['sa']]) ? $_REQUEST['sa'] : 'all';
+]]></search>
+			<add><![CDATA[
+	// Load Stop Spammer Functions
+	if ('all' == $_REQUEST['sa'] || 'browse' == $_REQUEST['sa'] || 'query' == $_REQUEST['sa'])
+	{
+		global $sourcedir;
+		require_once($sourcedir . '/StopSpammer.php');
+	}
+]]></add>
+		</operation>
 <!--- First List - List All Member - BEGIN --->
 		<operation>
 			<search position="replace"><![CDATA[
@@ -171,12 +184,9 @@
 
 		$modSettings['registration_method'] = 2;
 
+		// Check and/or Report This Members
 		if (!empty($_POST['delete']))
-		{
-			// Check and/or Report This Members
-			require_once($sourcedir . '/Subs-Members.php');
 			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
-		}
 	}
 ]]></add>
 		</operation>
@@ -192,9 +202,9 @@
 				'position' => 'below_table_data',
 				'value' => '
 					<div style="width: 50%; margin: auto" class="leyend_stopspammer">
-						<img src="' . $context['menu_image_path'] . '/../icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
-						<img src="' . $context['menu_image_path'] . '/../icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
-						<img src="' . $context['menu_image_path'] . '/../icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
 					</div>',
 				'class' => 'titlebg',
 			),
@@ -229,33 +239,14 @@
 				'position' => 'below_table_data',
 				'value' => '
 					<div style="width: 50%; margin: auto" class="leyend_stopspammer">
-						<img src="' . $context['menu_image_path'] . '/../icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
-						<img src="' . $context['menu_image_path'] . '/../icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
-						<img src="' . $context['menu_image_path'] . '/../icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
 					</div>',
 				'class' => 'titlebg',
 			),]]></add>
 		</operation>
 <!--- Leyends, Info and  New Functions - END --->
-
-		<operation>
-			<search position="end" />
-			<add><![CDATA[
-function sprintfspamer($value, $url, $index, $type)
-{
-	global $txt, $settings, $modSettings;
-
-	$is_spamer = (!$modSettings['stopspammer_enable'] || 3 != $value['is_activated']) ? 0 : $value['is_spammer'];
-
-	$format1 = $modSettings['stopspammer_enable'] && $type && (($bol_1 = $is_spamer >> ($type - 1) & 1) || ($bol_2 = 8 == $is_spamer) || $modSettings['stopspammer_show01'])
-		? '<a href="http://www.stopforumspam.com/search?q=' . urlencode($value[$index]) . '" target="_blank"><img src="' . $settings['images_url'] . '/icons/' . ($bol_1 ? 'spammer' : ($bol_2 ? 'suspect' : 'moreinfo')) . '.gif" alt="[' . $txt['manage_search'] . ']" title="' . $txt['stopspammer_title'] . '" style="vertical-align: middle" /></a>' : '';
-
-	$format2 = $is_spamer % 8 ? array('<span class="error">', '</span>') : array('', '');
-
-	return $format1 . '<a href="'. $url . '">' . implode($value[$index], $format2) . '</a>';
-}
-]]></add>
-		</operation>
 	</file>
 
 	<file name="$sourcedir/Register.php">
@@ -264,13 +255,17 @@ function sprintfspamer($value, $url, $index, $type)
 	// Include the additional options that might have been filled in.]]></search>
 			<add><![CDATA[
 	// Is Spammer? Then should be approval
-	if ($modSettings['stopspammer_enable'] && $regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
+	if ($modSettings['stopspammer_enable'])
+	{
+		require_once($sourcedir . '/StopSpammer.php');
+		if ($regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
 		{
-		$regOptions['require'] = 'approval';
-		$modSettings['registration_method'] = 2;
-		if ($regOptions['spammer'] != 8)
-			updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+			$regOptions['require'] = 'approval';
+			$modSettings['registration_method'] = 2;
+			if ($regOptions['spammer'] != 8)
+				updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
 		}
+	}
 ]]></add>
 		</operation>
 	</file>
@@ -298,76 +293,35 @@ function sprintfspamer($value, $url, $index, $type)
 			<add><![CDATA[
 			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login, mem.is_spammer,]]></add>
 		</operation>
-
+	</file>
+<!-- Profile BEGIN -->
+	<file name="$sourcedir/Profile.php">
 		<operation>
-			<search position="end" />
+			<search position="before"><![CDATA[
+				'deleteaccount' => array(
+					'label' => $txt['deleteAccount'],
+					'file' => 'Profile-Actions.php',
+					'function' => 'deleteAccount',
+					'sc' => 'post',
+					'password' => true,
+					'permission' => array(
+						'own' => array('profile_remove_any', 'profile_remove_own'),
+						'any' => array('profile_remove_any'),
+					),
+				),]]></search>
 			<add><![CDATA[
-// This function Check Spammer in DB - MOD StopSpammer
-function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
-{
-	global $sourcedir, $modSettings;
-
-	$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? "ip={$check_ip}&" : '') . 'username=' . urlencode($check_name) . '&email=' . $check_mail;
-
-	// Try to download.
-	require_once($sourcedir . '/Subs-Package.php');
-	$down_ok = fetch_web_data($remoteXML);
-
-	// Test Host Connection
-	if ($test) return (bool)$down_ok;
-
-	// Connection Failed
-	if (!$down_ok)
-		if ($modSettings['stopspammer_faildb']) 
-			return ('1' == $modSettings['stopspammer_faildb'] ? 0 : 8);
-		else 
-			fatal_lang_error('stopspammer_error');
-
-	// Procesing XML
-	preg_match_all('~<type>(\w+)</type>\n<appears>(\w+)</appears>~', $down_ok, $q_is_spammer);
-
-	$suma = 0;
-	foreach ($q_is_spammer[1] as $key => $value)
-		$suma += ('yes' == $q_is_spammer[2][$key]) << ('ip' == $value ? 0 : ('username' == $value ? 1 : 2));
-
-	return $suma;
-}
-
-// This function Check & Report Many Members in DB Spammer - MOD StopSpammer
-function checkreportMembers($users, $report)
-{
-	global $smcFunc, $sourcedir, $modSettings;
-
-	if ($report)
-		require_once($sourcedir . '/Subs-Package.php');
-
-	// Read data of Group Users
-	$resource = $smcFunc['db_query']('', '
-		SELECT id_member, member_name, email_address, member_ip, is_spammer
-			FROM {db_prefix}members
-			WHERE id_member {raw:where}',
-		array('where' => is_array($users) ? 'IN (' . implode(',', $users) . ')' : '= ' . $users)
-	);
-
-	// Try Send Report AND/OR Check Users, Neutralize and Update Data Spammer
-	while ($row = $smcFunc['db_fetch_assoc']($resource))
-	{
-		if ($report)
-			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=O0Ys3RHtDZPMfB');
-
-		if ($row['is_spammer'] != $is_spammer =
-			checkDBSpammer($row['member_ip'], $row['member_name'], $row['email_address']))
-			{
-				updateMemberData($row['id_member'], array('is_activated' => 3, 'is_spammer' => $is_spammer));
-				++$modSettings['stopspammer_count'];
-			}
-	}
-	updateSettings(array('stopspammer_count' => $modSettings['stopspammer_count']), true);
-
-	$smcFunc['db_free_result']($resource);
-}
-]]></add>
+				'checkmember' => array(
+					'label' => $txt['stopspammer_profilecheck'],
+					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('id_member = ' . $context['id_member'], array()))),
+					'enabled' => $cur_profile['id_group'] != 1 && !in_array(1, explode(',', $cur_profile['additional_groups'])),
+					'sc' => 'get',
+					'permission' => array(
+						'own' => array('profile_remove_any', 'profile_remove_own'),
+						'any' => array('profile_remove_any', 'moderate_forum'),
+					),
+				),]]></add>
 		</operation>
 	</file>
+<!-- Profile END -->
 
 </modification>

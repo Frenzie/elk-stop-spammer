@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.2</version>
+	<version>2.3</version>
 
 	<file name="$languagedir/Modifications.english.php">
 		<operation>
@@ -31,6 +31,9 @@ $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/comm
 $txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
 $txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
 $txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['stopspammer_profilecheck'] = 'Check this member';
+$txt['stopspammer_limitexceded'] = 'You have exceded the check limiting (5000 API queries per day).<br />You should wait from tomorrow for check again.';
 
 $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
@@ -66,6 +69,9 @@ $txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you ca
 $txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
 $txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
 
+$txt['stopspammer_profilecheck'] = 'Check this member';
+$txt['stopspammer_limitexceded'] = 'You have exceded the check limiting (5000 API queries per day).<br />You should wait from tomorrow for check again.';
+
 $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
@@ -99,6 +105,9 @@ $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/comm
 $txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
 $txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
 $txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
+
+$txt['stopspammer_profilecheck'] = 'Check this member';
+$txt['stopspammer_limitexceded'] = 'You have exceded the check limiting (5000 API queries per day).<br />You should wait from tomorrow for check again.';
 
 $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
@@ -134,6 +143,9 @@ $txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you ca
 $txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
 $txt['stopspammer_leyd03'] = 'Spammers: See more info of activity of this spammer';
 
+$txt['stopspammer_profilecheck'] = 'Check this member';
+$txt['stopspammer_limitexceded'] = 'You have exceded the check limiting (5000 API queries per day).<br />You should wait from tomorrow for check again.';
+
 $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
 $txt['spammers_checks'] = 'Check these Members';
 $txt['spammers_report'] = 'Report these Members';
@@ -146,32 +158,35 @@ $txt['confirm_spammers_report'] = 'Are you sure you want to report the selected 
 			<search position="end" />
 			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. ConexiÛn Fallida.<br />
-Por favor, intente m·s tarde o Contacte con el Web-Master';
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi√≥n Fallida.<br />
+Por favor, intente m√°s tarde o Contacte con el Web-Master';
 $txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
-$txt['stopspammer_title'] = 'Buscar m·s info en `Stop Forum Spam`';
+$txt['stopspammer_title'] = 'Buscar m√°s info en `Stop Forum Spam`';
 
 $txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
 $txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
-$txt['stopspammer_show01_sub'] = 'Podr·s revisar cualquier usuario en cualquier momento con un click';
+$txt['stopspammer_show01_sub'] = 'Podr√°s revisar cualquier usuario en cualquier momento con un click';
 
-$txt['stopspammer_faildb'] = 'Si falla la  conexiÛn con la DB Anti SPAM...';
+$txt['stopspammer_faildb'] = 'Si falla la  conexi√≥n con la DB Anti SPAM...';
 $txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
 $txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
-$txt['stopspammer_fail03'] = 'Poner Bajo AprobaciÛn con alerta amarilla';
-$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexiÛn remota con la DB';
-$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexiÛn, intenta luego<br />Si contin˙a revisa el tema de soporte y busca ';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci√≥n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi√≥n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi√≥n, intenta luego<br />Si contin√∫a revisa el tema de soporte y busca ';
 $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
 
 $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
-$txt['stopspammer_leyd03'] = 'Spammers: Ver m·s info de la actividad de este spammer';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m√°s info de la actividad de este spammer';
+
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l√≠mite de consultas (5000 consultas por d√≠a).<br />Debes esperar hasta ma√±ana para continuar.';
 
 $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
-$txt['confirm_spammers_checks'] = 'øEst·s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = 'øEst·s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar·n marcados como spammers en todo el mundo y no podr·n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est·s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
+$txt['confirm_spammers_checks'] = '¬øEst√°s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¬øEst√°s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar√°n marcados como spammers en todo el mundo y no podr√°n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est√°s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish-utf8.php" error="skip">
@@ -200,6 +215,9 @@ $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero pue
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
 $txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
 
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l&iacute;mite de consultas (5000 consultas por d&iacute;a).<br />Debes esperar hasta ma&ntilde;ana para continuar.';
+
 $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
@@ -212,32 +230,35 @@ $txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres re
 			<search position="end" />
 			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. ConexiÛn Fallida.<br />
-Por favor, intente m·s tarde o Contacte con el Web-Master';
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi√≥n Fallida.<br />
+Por favor, intente m√°s tarde o Contacte con el Web-Master';
 $txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
-$txt['stopspammer_title'] = 'Buscar m·s info en `Stop Forum Spam`';
+$txt['stopspammer_title'] = 'Buscar m√°s info en `Stop Forum Spam`';
 
 $txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
 $txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
-$txt['stopspammer_show01_sub'] = 'Podr·s revisar cualquier usuario en cualquier momento con un click';
+$txt['stopspammer_show01_sub'] = 'Podr√°s revisar cualquier usuario en cualquier momento con un click';
 
-$txt['stopspammer_faildb'] = 'Si falla la  conexiÛn con la DB Anti SPAM...';
+$txt['stopspammer_faildb'] = 'Si falla la  conexi√≥n con la DB Anti SPAM...';
 $txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
 $txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
-$txt['stopspammer_fail03'] = 'Poner Bajo AprobaciÛn con alerta amarilla';
-$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexiÛn remota con la DB';
-$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexiÛn, intenta luego<br />Si contin˙a revisa el tema de soporte y busca ';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci√≥n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi√≥n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi√≥n, intenta luego<br />Si contin√∫a revisa el tema de soporte y busca ';
 $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
 
 $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
-$txt['stopspammer_leyd03'] = 'Spammers: Ver m·s info de la actividad de este spammer';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m√°s info de la actividad de este spammer';
+
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l√≠mite de consultas (5000 consultas por d√≠a).<br />Debes esperar hasta ma√±ana para continuar.';
 
 $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
-$txt['confirm_spammers_checks'] = 'øEst·s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = 'øEst·s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar·n marcados como spammers en todo el mundo y no podr·n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est·s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
+$txt['confirm_spammers_checks'] = '¬øEst√°s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¬øEst√°s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar√°n marcados como spammers en todo el mundo y no podr√°n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est√°s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_es-utf8.php" error="skip">
@@ -266,6 +287,9 @@ $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero pue
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
 $txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
 
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l&iacute;mite de consultas (5000 consultas por d&iacute;a).<br />Debes esperar hasta ma&ntilde;ana para continuar.';
+
 $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
@@ -278,32 +302,35 @@ $txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres re
 			<search position="end" />
 			<add><![CDATA[
 //	MOD Stop Spammer
-$txt['stopspammer_error'] = 'Error con DB Anti SPAM. ConexiÛn Fallida.<br />
-Por favor, intente m·s tarde o Contacte con el Web-Master';
+$txt['stopspammer_error'] = 'Error con DB Anti SPAM. Conexi√≥n Fallida.<br />
+Por favor, intente m√°s tarde o Contacte con el Web-Master';
 $txt['stopspammer_count'] = 'Spammers bloqueados hasta la fecha';
-$txt['stopspammer_title'] = 'Buscar m·s info en `Stop Forum Spam`';
+$txt['stopspammer_title'] = 'Buscar m√°s info en `Stop Forum Spam`';
 
 $txt['stopspammer_enable'] = 'Activar/Desactivar MOD Stop Spammer';
 $txt['stopspammer_show01'] = 'Mostrar Link "More Info" para todos los Usuarios';
-$txt['stopspammer_show01_sub'] = 'Podr·s revisar cualquier usuario en cualquier momento con un click';
+$txt['stopspammer_show01_sub'] = 'Podr√°s revisar cualquier usuario en cualquier momento con un click';
 
-$txt['stopspammer_faildb'] = 'Si falla la  conexiÛn con la DB Anti SPAM...';
+$txt['stopspammer_faildb'] = 'Si falla la  conexi√≥n con la DB Anti SPAM...';
 $txt['stopspammer_fail01'] = 'Mostrar Error y Abortar el Registro';
 $txt['stopspammer_fail02'] = 'Permitir Registro Inmediatamente';
-$txt['stopspammer_fail03'] = 'Poner Bajo AprobaciÛn con alerta amarilla';
-$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexiÛn remota con la DB';
-$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexiÛn, intenta luego<br />Si contin˙a revisa el tema de soporte y busca ';
+$txt['stopspammer_fail03'] = 'Poner Bajo Aprobaci√≥n con alerta amarilla';
+$txt['stopspammer_faildb1_sub'] = 'Tu host puede hacer conexi√≥n remota con la DB';
+$txt['stopspammer_faildb2_sub'] = 'Tu host no pudo hacer conexi√≥n, intenta luego<br />Si contin√∫a revisa el tema de soporte y busca ';
 $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.new#post_issues"><span class="error"><b>Known Issues</b></span></a>';
 
 $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
-$txt['stopspammer_leyd03'] = 'Spammers: Ver m·s info de la actividad de este spammer';
+$txt['stopspammer_leyd03'] = 'Spammers: Ver m√°s info de la actividad de este spammer';
+
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l√≠mite de consultas (5000 consultas por d√≠a).<br />Debes esperar hasta ma√±ana para continuar.';
 
 $txt['in_stop_forum_spam'] = 'En la Web Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';
 $txt['spammers_report'] = 'Reportar Usuarios';
-$txt['confirm_spammers_checks'] = 'øEst·s seguro que deseas revisar estos usuarios?';
-$txt['confirm_spammers_report'] = 'øEst·s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar·n marcados como spammers en todo el mundo y no podr·n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est·s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
+$txt['confirm_spammers_checks'] = '¬øEst√°s seguro que deseas revisar estos usuarios?';
+$txt['confirm_spammers_report'] = '¬øEst√°s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar√°n marcados como spammers en todo el mundo y no podr√°n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est√°s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';]]></add>
 		</operation>
 	</file>
 	<file name="$languagedir/Modifications.spanish_latin-utf8.php" error="skip">
@@ -331,6 +358,9 @@ $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/comm
 $txt['stopspammer_leyd01'] = 'No Spammer: Este dato no estaba en la DB. Pero puedes revisar';
 $txt['stopspammer_leyd02'] = 'Sospechoso: Este usuario no pudo ser revisado. Revisa ahora';
 $txt['stopspammer_leyd03'] = 'Spammers: Ver m&aacute;s info de la actividad de este spammer';
+
+$txt['stopspammer_profilecheck'] = 'Revisar este usuario';
+$txt['stopspammer_limitexceded'] = 'Has excedido el l&iacute;mite de consultas (5000 consultas por d&iacute;a).<br />Debes esperar hasta ma&ntilde;ana para continuar.';
 
 $txt['in_stop_forum_spam'] = 'En la Web de Stop Forum Spam:';
 $txt['spammers_checks'] = 'Revisar Usuarios';

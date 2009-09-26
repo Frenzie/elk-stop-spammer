@@ -2,7 +2,7 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.2</version>
+	<version>2.3</version>
 */
 global $db_prefix;
 
