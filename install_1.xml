@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3</version>
+	<version>2.3.7</version>
 
 	<file name="$themedir/ManageMembers.template.php">
 		<operation>
@@ -72,7 +72,7 @@ function template_view_members()
 			<add><![CDATA[
 			', (!$modSettings['stopspammer_enable'] ? '' : '<tr class="titlebg">
 				<td colspan="8">
-					<div style="width: 60%; margin: auto" class="leyend_stopspammer">
+					<div style="margin: auto" class="leyend_stopspammer">
 						<img src="' . $settings['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
 						<img src="' . $settings['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
 						<img src="' . $settings['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
@@ -98,7 +98,7 @@ function template_view_members()
 			</tr>
 			<tr class="titlebg">
 				<td colspan="6">
-					<div style="width: 60%; margin: auto" class="leyend_stopspammer">
+					<div style="margin: auto" class="leyend_stopspammer">
 						<img src="' . $settings['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
 						<img src="' . $settings['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
 						<img src="' . $settings['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
@@ -117,9 +117,8 @@ function template_admin_settings()
 			<add><![CDATA[
 function template_admin_settings()
 {
-	global $context, $settings, $options, $scripturl, $txt, $modSettings, $sourcedir;
+	global $context, $settings, $options, $scripturl, $txt, $modSettings;
 
-	require_once($sourcedir . '/StopSpammer.php');
 	$stopspammer_faildb_sub = checkDBSpammer('127.0.0.1', 'Test_Conection_DB', 'xxx@xxx.com', true)
 		? '<span style="color: #008000">' . $txt['stopspammer_faildb1_sub'] . '</span>'
 		: '<span class="error">'.$txt['stopspammer_faildb2_sub'].$txt['stopspammer_not_translate'].'</span>';]]></add>
@@ -134,12 +133,35 @@ function template_admin_settings()
 							<td width="100%" colspan="2" align="center">
 								<hr />
 							</td>
-						</tr><tr class="windowbg2">
+					</tr><tr class="windowbg2">
 						<th width="50%" align="right">
 							<label for="stopspammer_enable">', $txt['stopspammer_enable'], '</label>:
+							<div class="smalltext" style="font-weight: normal;">', $txt['stopspammer_check_sub1'], '</div>
 						</th>
 						<td valign="top">
 							<input type="checkbox" name="stopspammer_enable" id="stopspammer_enable"', empty($modSettings['stopspammer_enable']) ? '' : ' checked="checked"', ' class="check" />
+						</td>
+					</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_check_name">', $txt['stopspammer_check_name'], '</label>:
+						</th>
+						<td valign="top">
+							<input type="checkbox" name="stopspammer_check_name" id="stopspammer_check_name"', empty($modSettings['stopspammer_check_name']) ? '' : ' checked="checked"', ' class="check" />
+						</td>
+					</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_check_mail">', $txt['stopspammer_check_mail'], '</label>:
+						</th>
+						<td valign="top">
+							<input type="checkbox" name="stopspammer_check_mail" id="stopspammer_check_mail"', empty($modSettings['stopspammer_check_mail']) ? '' : ' checked="checked"', ' class="check" />
+						</td>
+					</tr><tr class="windowbg2">
+						<th width="50%" align="right">
+							<label for="stopspammer_check_ip">', $txt['stopspammer_check_ip'], '</label>:
+							<div class="smalltext" style="font-weight: normal;">', $txt['stopspammer_check_sub2'], '</div>
+						</th>
+						<td valign="top">
+							<input type="checkbox" name="stopspammer_check_ip" id="stopspammer_check_ip"', empty($modSettings['stopspammer_check_ip']) ? '' : ' checked="checked"', ' class="check" />
 						</td>
 					</tr><tr class="windowbg2">
 						<th width="50%" align="right">
@@ -161,18 +183,44 @@ function template_admin_settings()
 						<td valign="top">
 							<input type="checkbox" name="stopspammer_show01" id="stopspammer_show01"', empty($modSettings['stopspammer_show01']) ? '' : ' checked="checked"', ' class="check" />
 						</td>
-					</tr>]]></add>
+					</tr><tr class="windowbg2" valign="top">
+							<th width="50%" align="right">
+								<label for="stopspammer_api_key">', $txt['stopspammer_api_key'], '</label>:
+								<div class="smalltext" style="font-weight: normal;">', $txt['stopspammer_api_key_sub'], '</div>
+							</th>
+							<td width="50%" align="left">
+								<input type="text" name="stopspammer_api_key" id="stopspammer_api_key" value="', !empty($modSettings['stopspammer_api_key']) ? $modSettings['stopspammer_api_key'] : '', '" size="22" maxlength="35" />
+							</td>
+						</tr>]]></add>
 		</operation>
 	</file>
 
 	<file name="$sourcedir/ManageRegistration.php">
 		<operation>
+			<search position="replace"><![CDATA[
+function RegCenter()
+{
+	global $modSettings, $context, $txt, $db_prefix, $scripturl;]]></search>
+			<add><![CDATA[
+function RegCenter()
+{
+	global $modSettings, $context, $txt, $db_prefix, $scripturl, $sourcedir;
+
+	// Load Stop Spammer Functions
+	require_once($sourcedir . '/StopSpammer.php');]]></add>
+		</operation>
+
+		<operation>
 			<search position="before"><![CDATA[
 			'coppaPhone' => !empty($_POST['coppaPhone']) ? $_POST['coppaPhone'] : '',]]></search>
 			<add><![CDATA[
 			'stopspammer_enable' => empty($_POST['stopspammer_enable']) ? '0' : '1',
-			'stopspammer_faildb' => ereg('[0-2]', $_POST['stopspammer_faildb']) ? $_POST['stopspammer_faildb'] : '0',
-			'stopspammer_show01' => empty($_POST['stopspammer_show01']) ? '0' : '1',]]></add>
+			'stopspammer_check_name' => empty($_POST['stopspammer_check_name']) ? '0' : '1',
+			'stopspammer_check_mail' => empty($_POST['stopspammer_check_mail']) ? '0' : '1',
+			'stopspammer_check_ip' => empty($_POST['stopspammer_check_ip']) ? '0' : '1',
+			'stopspammer_show01' => empty($_POST['stopspammer_show01']) ? '0' : '1',
+			'stopspammer_faildb' => preg_match('/[0-2]/', $_POST['stopspammer_faildb']) ? $_POST['stopspammer_faildb'] : '0',
+			'stopspammer_api_key' => empty($_POST['stopspammer_api_key']) ? '' : $_POST['stopspammer_api_key'],]]></add>
 		</operation>
 	</file>
 
@@ -254,6 +302,13 @@ function template_admin_settings()
 	}
 ]]></add>
 		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && empty($_POST))]]></search>
+			<add><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && (empty($_POST) || ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))))]]></add>
+		</operation>
 	</file>
 
 	<file name="$sourcedir/Register.php">
@@ -303,7 +358,7 @@ function template_admin_settings()
 			<add><![CDATA[
 	// Stop Spammer MOD - Profile Options
 	if ($modSettings['stopspammer_enable'] && allowedTo('moderate_forum'))
-		$context['profile_areas']['profile_action']['areas']['checkMember'] = '<a href="' . $scripturl . '?action=viewmembers;sa=query;params=' . base64_encode('ID_MEMBER = ' . $memID) . '">' . $txt['stopspammer_profilecheck'] . '</a>';]]></add>
+		$context['profile_areas']['profile_action']['areas']['checkMember'] = '<a href="' . $scripturl . '?action=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID))) . '">' . $txt['stopspammer_profilecheck'] . '</a>';]]></add>
 		</operation>
 	</file>
 <!-- Profile END -->

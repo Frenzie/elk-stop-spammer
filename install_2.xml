@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3</version>
+	<version>2.3.7</version>
 
 	<file name="$sourcedir/ManageRegistration.php">
 		<operation>
@@ -24,9 +24,13 @@
 			<add><![CDATA[
 		'',
 			// Stop Spammer
-			array('check', 'stopspammer_enable'),
+			array('check', 'stopspammer_enable', 'subtext' => $txt['stopspammer_check_sub1']),
+			array('check', 'stopspammer_check_name'),
+			array('check', 'stopspammer_check_mail'),
+			array('check', 'stopspammer_check_ip', 'subtext' => $txt['stopspammer_check_sub2']),
 			array('select', 'stopspammer_faildb', array($txt['stopspammer_fail01'], $txt['stopspammer_fail02'], $txt['stopspammer_fail03']), 'subtext' => $stopspammer_faildb_sub),
-			array('check', 'stopspammer_show01', 'subtext' => $txt['stopspammer_show01_sub']),]]></add>
+			array('check', 'stopspammer_show01', 'subtext' => $txt['stopspammer_show01_sub']),
+			array('text', 'stopspammer_api_key', 'subtext' => $txt['stopspammer_api_key_sub']),]]></add>
 		</operation>
 	</file>
 
@@ -201,7 +205,7 @@
 			array(
 				'position' => 'below_table_data',
 				'value' => '
-					<div style="width: 50%; margin: auto" class="leyend_stopspammer">
+					<div style="margin: auto" class="leyend_stopspammer">
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
@@ -215,7 +219,7 @@
 					<label>' . $txt['in_stop_forum_spam'] . '</label>
 					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
 					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
-				'class' => 'titlebg',
+				'class' => 'titlebg','titlebg',
 				'style' => 'text-align: right;',
 			),]]></add>
 		</operation>
@@ -225,7 +229,7 @@
 			array(
 				'position' => 'below_table_data',
 				'value' => '
-					<div style="float:left">]]></search>
+					<div class="floatleft">]]></search>
 			<add><![CDATA[
 			!$modSettings['stopspammer_enable'] ? '' :
 			array(
@@ -238,13 +242,20 @@
 			array(
 				'position' => 'below_table_data',
 				'value' => '
-					<div style="width: 50%; margin: auto" class="leyend_stopspammer">
+					<div style="margin: auto" class="leyend_stopspammer">
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
 						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
 					</div>',
 				'class' => 'titlebg',
 			),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && empty($_POST))]]></search>
+			<add><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && (empty($_POST) || ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))))]]></add>
 		</operation>
 <!--- Leyends, Info and  New Functions - END --->
 	</file>
@@ -312,7 +323,7 @@
 			<add><![CDATA[
 				'checkmember' => array(
 					'label' => $txt['stopspammer_profilecheck'],
-					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('id_member = ' . $context['id_member'], array()))),
+					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID))),
 					'enabled' => $cur_profile['id_group'] != 1 && !in_array(1, explode(',', $cur_profile['additional_groups'])),
 					'sc' => 'get',
 					'permission' => array(

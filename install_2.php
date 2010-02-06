@@ -2,14 +2,14 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3</version>
+	<version>2.3.7</version>
 */
-global $smcFunc;
+global $smcFunc, $db_prefix;
 
 db_extend('packages');
 
 $smcFunc['db_add_column'](
-			'members',
+			'{db_prefix}members',
 			array (
 				'name' => 'is_spammer',
 				'type' => 'TINYINT',
@@ -29,7 +29,11 @@ $smcFunc['db_insert']('ignore',
 				array ('stopspammer_count' ,'0'),
 				array ('stopspammer_enable','1'),
 				array ('stopspammer_show01','1'),
-				array ('stopspammer_faildb','2')
+				array ('stopspammer_faildb','2'),
+				array ('stopspammer_api_key',''),
+				array ('stopspammer_check_name','1'),
+				array ('stopspammer_check_mail','1'),
+				array ('stopspammer_check_ip','1')
 			),
 			array()
 		);

@@ -2,7 +2,7 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3</version>
+	<version>2.3.7</version>
 */
 global $db_prefix;
 
@@ -28,7 +28,10 @@ db_query("INSERT IGNORE INTO
 			VALUES	('stopspammer_count' ,'0'),
 					('stopspammer_enable','1'),
 					('stopspammer_show01','1'),
-					('stopspammer_faildb','2')"
+					('stopspammer_faildb','2'),
+					('stopspammer_api_key',''),
+					('stopspammer_check_name','1'),
+					('stopspammer_check_mail','1'),
+					('stopspammer_check_ip','1')"
 			, __FILE__, __LINE__
 		);
-?>

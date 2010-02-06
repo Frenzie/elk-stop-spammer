@@ -3,14 +3,14 @@
 ##########################################
 ##		<id>M-DVD:StopSpammer</id>		##
 ##		<name>Stop Spammer</name>		##
-##		<version>2.3.</version>			##
+##		<version>2.3.7</version>		##
 ##		<type>modification</type>		##
 ##########################################
 
 /******************************************************************************
 * This program is free software; you may redistribute it and/or modify it     *
 * under the terms of the provided license as published by SMF.                *
-
+*******************************************************************************
 * This program is distributed in the hope that it is and will be useful,      *
 * but WITHOUT ANY WARRANTIES; without even any implied warranty of            *
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                        *
@@ -24,7 +24,8 @@ function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
 {
 	global $sourcedir, $modSettings;
 
-	$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? "ip={$check_ip}&" : '') . 'username=' . urlencode($check_name) . '&email=' . $check_mail;
+	//$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? "ip={$check_ip}&" : '') . 'username=' . urlencode($check_name) . '&email=' . $check_mail;
+	$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? ($modSettings['stopspammer_check_ip'] ? 'ip=' . $check_ip . '&' : '') : '') . ($modSettings['stopspammer_check_name'] ? 'username=' . urlencode($check_name) . '&' : '') . ($modSettings['stopspammer_check_mail'] ? 'email=' . $check_mail : '');
 
 	// Try to download.
 	require_once($sourcedir . '/Subs-Package.php');
@@ -60,7 +61,7 @@ function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
 // This function Check & Report Many Members in DB Spammer - MOD StopSpammer
 function checkreportMembers($users, $report)
 {
-	global $sourcedir, $modSettings, $smcFunc;
+	global $db_prefix, $sourcedir, $modSettings, $smcFunc;
 
 	if ($report)
 		require_once($sourcedir . '/Subs-Package.php');
@@ -70,13 +71,15 @@ function checkreportMembers($users, $report)
 
 	foreach ($members_data as $row)
 	{
+	  if (!empty($row['id_member'])) {
 		if ($report)
-			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=O0Ys3RHtDZPMfB');
+			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=' . (!empty($modSettings['stopspammer_api_key']) ? $modSettings['stopspammer_api_key'] : 'O0Ys3RHtDZPMfB'));
 
 		if ($is_spammer = checkDBSpammer($row['member_ip'], $row['member_name'], $row['email_address']))
 			updateMemberData($row['id_member'], array('is_activated' => 3, 'is_spammer' => $is_spammer));
 		if ($row['is_spammer'] != $is_spammer)
 			++$modSettings['stopspammer_count'];
+	  }
 	}
 	updateSettings(array('stopspammer_count' => $modSettings['stopspammer_count']), true);
 }
@@ -99,7 +102,7 @@ function loadcheckedMembers_1($users)
 
 function loadcheckedMembers_2($users)
 {
-	global $smcFunc;
+	global $smcFunc, $db_prefix;
 
 	// Read data of Group Users
 	$row = array();
@@ -128,5 +131,3 @@ function sprintfspamer(&$value, $url, $index, $type)
 
 	return $format1 . '<a href="'. $url . '">' . implode($value[$index], $format2) . '</a>';
 }
-
-?>
