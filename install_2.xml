@@ -15,6 +15,8 @@
 	$stopspammer_faildb_sub = checkDBSpammer('127.0.0.1', 'Test_Conection_DB', 'xxx@xxx.com', true)
 		? '<span style="color: #008000">' . $txt['stopspammer_faildb1_sub'] . '</span>'
 		: '<span class="error">' . $txt['stopspammer_faildb2_sub'] . $txt['stopspammer_not_translate'] . '</span>';
+	if (!empty($_POST['stopspammer_api_key']) && $_POST['stopspammer_api_key'] == '')
+		$_POST['stopspammer_enable'] = '0';
 ]]></add>
 		</operation>
 
@@ -201,7 +203,7 @@
 				'position' => 'below_table_data',
 				'value' => '<input type="submit" ]]></search>
 			<add><![CDATA[
-			!$modSettings['stopspammer_enable'] ? '' :
+			!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' :
 			array(
 				'position' => 'below_table_data',
 				'value' => '
@@ -212,7 +214,7 @@
 					</div>',
 				'class' => 'titlebg',
 			),
-			!$modSettings['stopspammer_enable'] ? '' :
+			!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' :
 			array(
 				'position' => 'below_table_data',
 				'value' => '
@@ -231,14 +233,14 @@
 				'value' => '
 					<div class="floatleft">]]></search>
 			<add><![CDATA[
-			!$modSettings['stopspammer_enable'] ? '' :
+			!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' :
 			array(
 				'position' => 'below_table_data',
 				'value' => '
 					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
 				'class' => 'titlebg',
 			),
-			!$modSettings['stopspammer_enable'] ? '' :
+			!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' :
 			array(
 				'position' => 'below_table_data',
 				'value' => '
@@ -266,7 +268,7 @@
 	// Include the additional options that might have been filled in.]]></search>
 			<add><![CDATA[
 	// Is Spammer? Then should be approval
-	if ($modSettings['stopspammer_enable'])
+	if ($modSettings['stopspammer_enable'] && $modSettings['stopspammer_api_key'] != '')
 	{
 		require_once($sourcedir . '/StopSpammer.php');
 		if ($regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
@@ -284,7 +286,7 @@
 	<file name="$sourcedir/Subs.php">
 		<operation>
 			<search position="replace"><![CDATA[
-			$context['unapproved_members'] = !empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2 ? $modSettings['unapprovedMembers'] : 0;]]></search>
+			$context['unapproved_members'] = (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2) || !empty($modSettings['approveAccountDeletion']) ? $modSettings['unapprovedMembers'] : 0;]]></search>
 			<add><![CDATA[
 			$context['unapproved_members'] = $modSettings['unapprovedMembers'];]]></add>
 		</operation>
@@ -323,7 +325,7 @@
 			<add><![CDATA[
 				'checkmember' => array(
 					'label' => $txt['stopspammer_profilecheck'],
-					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID))),
+					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID, 'types' => array('mem_id' => '=')))),
 					'enabled' => $cur_profile['id_group'] != 1 && !in_array(1, explode(',', $cur_profile['additional_groups'])),
 					'sc' => 'get',
 					'permission' => array(

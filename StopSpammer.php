@@ -3,7 +3,7 @@
 ##########################################
 ##		<id>M-DVD:StopSpammer</id>		##
 ##		<name>Stop Spammer</name>		##
-##		<version>2.3.7</version>		##
+##		<version>2.3.8</version>		##
 ##		<type>modification</type>		##
 ##########################################
 
@@ -71,9 +71,16 @@ function checkreportMembers($users, $report)
 
 	foreach ($members_data as $row)
 	{
-	  if (!empty($row['id_member'])) {
+	  // Condicional (!empty($row['id_member'])) added in version 2.3.7 to avoid the yellow bug
+	  // The functions loadcheckedMembers 1 and 2 (added in version 2.3) were passing to the array
+	  // 	$members_data an empty key at the end. When processing this empty key with the foreach loop,
+	  // 	as there was no id_member to send, it was making the function checkDBSpammer to actually
+	  // 	check all the members in the database.
+	  // When there was no conexion with stopforumspam all of them went to is_activated = 3, is_spammer = 8 
+	  if (!empty($row['id_member']))
+	  {
 		if ($report)
-			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=' . (!empty($modSettings['stopspammer_api_key']) ? $modSettings['stopspammer_api_key'] : 'O0Ys3RHtDZPMfB'));
+			fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=' . $modSettings['stopspammer_api_key']);
 
 		if ($is_spammer = checkDBSpammer($row['member_ip'], $row['member_name'], $row['email_address']))
 			updateMemberData($row['id_member'], array('is_activated' => 3, 'is_spammer' => $is_spammer));
@@ -121,13 +128,15 @@ function sprintfspamer(&$value, $url, $index, $type)
 {
 	global $txt, $settings, $modSettings;
 
-	$is_spamer = (!$modSettings['stopspammer_enable'] || 3 != $value['is_activated']) ? 0 : $value['is_spammer'];
+	$is_spamer = (!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' || 3 != $value['is_activated']) ? 0 : $value['is_spammer'];
 //	$is_spamer = (!$modSettings['stopspammer_enable']) ? 0 : $value['is_spammer'];
 
-	$format1 = $modSettings['stopspammer_enable'] && $type && (($bol_1 = $is_spamer >> ($type - 1) & 1) || ($bol_2 = 8 == $is_spamer) || $modSettings['stopspammer_show01'])
+	$format1 = $modSettings['stopspammer_enable'] && $modSettings['stopspammer_api_key'] != '' && $type && (($bol_1 = $is_spamer >> ($type - 1) & 1) || ($bol_2 = 8 == $is_spamer) || $modSettings['stopspammer_show01'])
 		? '<a href="http://www.stopforumspam.com/search?q=' . urlencode($value[$index]) . '" target="_blank"><img src="' . $settings['default_images_url'] . '/icons/' . ($bol_1 ? 'spammer' : ($bol_2 ? 'suspect' : 'moreinfo')) . '.gif" alt="[' . (empty($txt['search']) ? $txt[182] : $txt['search']) . ']" title="' . $txt['stopspammer_title'] . '" style="vertical-align: middle" /></a>' : '';
 
 	$format2 = $is_spamer % 8 ? array('<span class="error">', '</span>') : array('', '');
 
 	return $format1 . '<a href="'. $url . '">' . implode($value[$index], $format2) . '</a>';
 }
+
+?>

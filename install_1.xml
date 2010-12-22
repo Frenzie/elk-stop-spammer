@@ -70,7 +70,7 @@ function template_view_members()
 			<tr>
 				<td class="windowbg2" align="right"]]></search>
 			<add><![CDATA[
-			', (!$modSettings['stopspammer_enable'] ? '' : '<tr class="titlebg">
+			', (!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' : '<tr class="titlebg">
 				<td colspan="8">
 					<div style="margin: auto" class="leyend_stopspammer">
 						<img src="' . $settings['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
@@ -93,7 +93,7 @@ function template_view_members()
 			<tr class="windowbg2">
 				<td align="right" colspan="6">]]></search>
 			<add><![CDATA[
-			', (!$modSettings['stopspammer_enable'] ? '' : '<tr class="titlebg">
+			', (!$modSettings['stopspammer_enable'] || $modSettings['stopspammer_api_key'] == '' ? '' : '<tr class="titlebg">
 				<td align="center" colspan="6">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</td>
 			</tr>
 			<tr class="titlebg">
@@ -214,7 +214,7 @@ function RegCenter()
 			<search position="before"><![CDATA[
 			'coppaPhone' => !empty($_POST['coppaPhone']) ? $_POST['coppaPhone'] : '',]]></search>
 			<add><![CDATA[
-			'stopspammer_enable' => empty($_POST['stopspammer_enable']) ? '0' : '1',
+			'stopspammer_enable' => empty($_POST['stopspammer_enable']) || $_POST['stopspammer_api_key'] == '' ? '0' : '1',
 			'stopspammer_check_name' => empty($_POST['stopspammer_check_name']) ? '0' : '1',
 			'stopspammer_check_mail' => empty($_POST['stopspammer_check_mail']) ? '0' : '1',
 			'stopspammer_check_ip' => empty($_POST['stopspammer_check_ip']) ? '0' : '1',
@@ -317,7 +317,7 @@ function RegCenter()
 	// Include the additional options that might have been filled in.]]></search>
 			<add><![CDATA[
 	// Is Spammer? Then should be approval
-	if ($modSettings['stopspammer_enable'])
+	if ($modSettings['stopspammer_enable'] && $modSettings['stopspammer_api_key'] != '')
 	{
 		require_once($sourcedir . '/StopSpammer.php');
 		if ($regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
@@ -357,8 +357,8 @@ function RegCenter()
 			$context['profile_areas']['profile_action']['areas']['deleteAccount'] = '<a href="' . $scripturl . '?action=profile;u=' . $memID . ';sa=deleteAccount">' . $txt['deleteAccount'] . '</a>';]]></search>
 			<add><![CDATA[
 	// Stop Spammer MOD - Profile Options
-	if ($modSettings['stopspammer_enable'] && allowedTo('moderate_forum'))
-		$context['profile_areas']['profile_action']['areas']['checkMember'] = '<a href="' . $scripturl . '?action=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID))) . '">' . $txt['stopspammer_profilecheck'] . '</a>';]]></add>
+	if ($modSettings['stopspammer_enable'] && $modSettings['stopspammer_api_key'] != '' && allowedTo('moderate_forum'))
+		$context['profile_areas']['profile_action']['areas']['checkMember'] = '<a href="' . $scripturl . '?action=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID, 'types' => array('mem_id' => '=')))) . '">' . $txt['stopspammer_profilecheck'] . '</a>';]]></add>
 		</operation>
 	</file>
 <!-- Profile END -->

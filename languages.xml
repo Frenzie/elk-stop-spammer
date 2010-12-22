@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3.7</version>
+	<version>2.3.8</version>
 
 	<file name="$languagedir/Modifications.english.php">
 		<operation>
@@ -42,7 +42,7 @@ $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected m
 $txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS they are marked as spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
 
 $txt['stopspammer_api_key'] = 'Your API key';
-$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one just leave it blank and the mod will use the default API key.';
+$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one you cannot use this mod.';
 
 $txt['stopspammer_check_sub1'] = '<br />If MOD Stop Spammer is enabled, every time we check a member:';
 $txt['stopspammer_check_name'] = 'Check their username';
@@ -89,7 +89,7 @@ $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected m
 $txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS they are marked as spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
 
 $txt['stopspammer_api_key'] = 'Your API key';
-$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one just leave it blank and the mod will use the default API key.';
+$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one you cannot use this mod.';
 
 $txt['stopspammer_check_sub1'] = '<br />If MOD Stop Spammer is enabled, every time we check a member:';
 $txt['stopspammer_check_name'] = 'Check their username';
@@ -136,7 +136,7 @@ $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected m
 $txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS they are marked as spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
 
 $txt['stopspammer_api_key'] = 'Your API key';
-$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one just leave it blank and the mod will use the default API key.';
+$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one you cannot use this mod.';
 
 $txt['stopspammer_check_sub1'] = '<br />If MOD Stop Spammer is enabled, every time we check a member:';
 $txt['stopspammer_check_name'] = 'Check their username';
@@ -183,7 +183,7 @@ $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected m
 $txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS they are marked as spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
 
 $txt['stopspammer_api_key'] = 'Your API key';
-$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one just leave it blank and the mod will use the default API key.';
+$txt['stopspammer_api_key_sub'] = 'If you want to use your own API key you must go first to <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> to sign up for one and write it here. If you haven\'t got one you cannot use this mod.';
 
 $txt['stopspammer_check_sub1'] = '<br />If MOD Stop Spammer is enabled, every time we check a member:';
 $txt['stopspammer_check_name'] = 'Check their username';
@@ -229,7 +229,7 @@ $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisa
 $txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una dejala en blanco y el mod usar&aacute; la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer est&aacute; activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
@@ -275,7 +275,7 @@ $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usua
 $txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aquí. Si no tienes una dejala en blanco y el mod usará la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer está activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
@@ -321,7 +321,7 @@ $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisa
 $txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una dejala en blanco y el mod usar&aacute; la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer est&aacute; activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
@@ -367,7 +367,7 @@ $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usua
 $txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aquí. Si no tienes una dejala en blanco y el mod usará la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer está activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
@@ -413,7 +413,7 @@ $txt['confirm_spammers_checks'] = '&iquest;Est&aacute;s seguro que deseas revisa
 $txt['confirm_spammers_report'] = '&iquest;Est&aacute;s seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedar&aacute;n marcados como spammers en todo el mundo y no podr&aacute;n utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si est&aacute;s completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una dejala en blanco y el mod usar&aacute; la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer est&aacute; activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
@@ -459,7 +459,7 @@ $txt['confirm_spammers_checks'] = '¿Estás seguro que deseas revisar estos usua
 $txt['confirm_spammers_report'] = '¿Estás seguro de que quieres reportar a los usuarios seleccionados?\n\nTen en cuenta que al reportar a estos usuarios a SFS quedarán marcados como spammers en todo el mundo y no podrán utilizar ninguno de los foros del mundo entero que usan esta base de datos.\n\nHazlo solo si estás completamente seguro de que son spammers y si por casualidad alguna vez cometes un error avisa cuanto antes al creador del mod para poder corregir el error en la base de datos de SFS.';
 
 $txt['stopspammer_api_key'] = 'Tu API key';
-$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aquí. Si no tienes una dejala en blanco y el mod usará la API key por defecto.';
+$txt['stopspammer_api_key_sub'] = 'Si quieres usar tu propia API key debes entrar primero en <a href="http://www.stopforumspam.com/signup" target="_blank">www.stopforumspam.com</a> para que te den una y escribirla aqu&iacute;. Si no tienes una el mod no te va a funcionar.';
 
 $txt['stopspammer_check_sub1'] = '<br />Si el MOD Stop Spammer está activado, cada vez que chequeemos un usuario:';
 $txt['stopspammer_check_name'] = 'Comprobar su nombre de usuario';
