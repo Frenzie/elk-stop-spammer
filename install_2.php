@@ -2,7 +2,7 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3.8</version>
+	<version>2.3.9</version>
 */
 global $smcFunc, $db_prefix;
 
@@ -37,19 +37,5 @@ $smcFunc['db_insert']('ignore',
 			),
 			array()
 		);
-
-// This mod cannot be enabled without an API key
-if (isset($modSettings['stopspammer_enable']) && 1 == intval($modSettings['stopspammer_enable']) && isset($modSettings['stopspammer_api_key']) && $modSettings['stopspammer_api_key'] == '')
-{
-	$smcFunc['db_query']('', '
-		UPDATE {db_prefix}settings
-		SET value = {string:value}
-		WHERE variable = {string:variable}',
-		array(
-			'value' => '0',
-			'variable' => 'stopspammer_enable',
-		)
-	);
-}
 
 ?>

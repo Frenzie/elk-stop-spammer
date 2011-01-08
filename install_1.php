@@ -2,9 +2,9 @@
 /*
 	<id>M-DVD:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3.8</version>
+	<version>2.3.9</version>
 */
-global $db_prefix, $modSettings;
+global $db_prefix;
 
 $result = db_query("DESCRIBE
 			{$db_prefix}members is_spammer"
@@ -35,16 +35,5 @@ db_query("INSERT IGNORE INTO
 					('stopspammer_check_ip','1')"
 			, __FILE__, __LINE__
 		);
-
-// This mod cannot be enabled without an API key
-if (isset($modSettings['stopspammer_enable']) && 1 == intval($modSettings['stopspammer_enable']) && isset($modSettings['stopspammer_api_key']) && $modSettings['stopspammer_api_key'] == '')
-{
-	db_query("
-		UPDATE {$db_prefix}settings
-		SET value = '0'
-		WHERE variable = 'stopspammer_enable'
-		LIMIT 1
-	", __FILE__, __LINE__);
-}
 
 ?>
