@@ -1,11 +1,11 @@
-[b]MOD Stop Spammer v2.3.8
+[b]MOD Stop Spammer v2.3.9
 ==================[/b]
 
 [table][tr][td][table][tr][td][+][b]Authors:[/b][/td][td][b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=148997]M-DVD[/url][/b] and [b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=68708]snoopy_virtual[/url][/b][/td][/tr]
 
-[tr][td][+][b]Version:[/b][/td][td]2.3.8[/td][/tr]
+[tr][td][+][b]Version:[/b][/td][td]2.3.9[/td][/tr]
 
-[tr][td][+][b]Release:[/b][/td][td]23th December 2010[/td][/tr]
+[tr][td][+][b]Release:[/b][/td][td]9th January 2010[/td][/tr]
 
 [tr][td][+][b]Compatible With:[/b][/td][td]SMF 1.1.1 - 1.1.12
 SMF 2 RC4[/td][/tr][/table][/td]
