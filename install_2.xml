@@ -5,41 +5,8 @@
 	<name>Stop Spammer</name>
 	<version>2.3.9</version>
 
-	<file name="$sourcedir/ManageRegistration.php">
-		<operation>
-			<search position="before"><![CDATA[
-	require_once($sourcedir . '/ManageServer.php');
-]]></search>
-			<add><![CDATA[
-	// Test if mod StopSpammer is OK
-	require_once($sourcedir . '/StopSpammer.php');
-	$txt['stopspammer_ok'] = stopspammer_test_mod_ok();
-	$stopspammer_faildb_sub = $txt['stopspammer_faildb_sub'];
-]]></add>
-		</operation>
 
-		<operation>
-			<search position="before"><![CDATA[
-			array('text', 'coppaPhone'),]]></search>
-			<add><![CDATA[
-		// Stop Spammer
-		array('title', 'stopspammer_settings'),
-		$txt['stopspammer_ok'],
-		'',
-			array('check', 'stopspammer_enable', 'subtext' => $txt['stopspammer_enable_sub']),
-		array('desc', 'stopspammer_check_sub1'),
-			array('check', 'stopspammer_check_name'),
-			array('check', 'stopspammer_check_mail'),
-			array('check', 'stopspammer_check_ip'),
-		array('desc', 'stopspammer_check_sub2'),
-			array('select', 'stopspammer_faildb', array($txt['stopspammer_fail01'], $txt['stopspammer_fail02'], $txt['stopspammer_fail03']), 'subtext' => $stopspammer_faildb_sub),
-			array('check', 'stopspammer_show01', 'subtext' => $txt['stopspammer_show01_sub']),
-			array('text', 'stopspammer_api_key'),
-		array('desc', 'stopspammer_api_key_sub'),]]></add>
-		</operation>
-	</file>
-
-	<file name="$sourcedir/ManageMembers.php">
+	<file name="SOURCEDIR/ManageMembers.php">
 		<!--- Load our functions at the beginning of ViewMembers() for every sa we need --->
 		<operation>
 			<search position="before"><![CDATA[
@@ -317,7 +284,7 @@
 		<!--- Leyends, Info and  New Functions - END --->
 	</file>
 
-	<file name="$sourcedir/Register.php">
+	<file name="SOURCEDIR/Register.php">
 		<operation>
 			<search position="after"><![CDATA[
 	// Include the additional options that might have been filled in.]]></search>
@@ -338,7 +305,7 @@
 		</operation>
 	</file>
 
-	<file name="$sourcedir/Subs.php">
+	<file name="SOURCEDIR/Subs.php">
 		<operation>
 			<search position="replace"><![CDATA[
 			$context['unapproved_members'] = (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2) || !empty($modSettings['approveAccountDeletion']) ? $modSettings['unapprovedMembers'] : 0;]]></search>
@@ -347,7 +314,7 @@
 		</operation>
 	</file>
 
-	<file name="$sourcedir/Subs-Members.php">
+	<file name="SOURCEDIR/Subs-Members.php">
 		<operation>
 			<search position="after"><![CDATA[
 		'validation_code' => $validation_code,]]></search>
@@ -363,7 +330,7 @@
 		</operation>
 	</file>
 
-	<file name="$sourcedir/Profile.php">
+	<file name="SOURCEDIR/Profile.php">
 		<!-- Profile BEGIN -->
 		<operation>
 			<search position="before"><![CDATA[
