@@ -305,6 +305,16 @@
 		</operation>
 	</file>
 
+
+<!-- let's see what to do about this
+
+https://github.com/elkarte/Elkarte/blob/1ec92cff034aeae85d3cc51798a2f736dd6f9db5/sources/Load.php#L2729-L2731
+
+	// Are there any members waiting for approval?
+	if (allowedTo('moderate_forum') && ((!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2) || !empty($modSettings['approveAccountDeletion'])) && !empty($modSettings['unapprovedMembers']))
+		$context['warning_controls']['unapproved_members'] = sprintf($txt[$modSettings['unapprovedMembers'] == 1 ? 'approve_one_member_waiting' : 'approve_many_members_waiting'], $scripturl . '?action=admin;area=viewmembers;sa=browse;type=approve', $modSettings['unapprovedMembers']);
+-->
+
 	<file name="SOURCEDIR/Subs.php">
 		<operation>
 			<search position="replace"><![CDATA[
@@ -314,6 +324,10 @@
 		</operation>
 	</file>
 
+
+
+
+
 	<file name="SOURCEDIR/Subs-Members.php">
 		<operation>
 			<search position="after"><![CDATA[
@@ -322,6 +336,8 @@
 		'is_spammer' => empty($regOptions['spammer']) ? 0 : $regOptions['spammer'],]]></add>
 		</operation>
 
+
+<!-- integrate_activate? -->
 		<operation>
 			<search position="replace"><![CDATA[
 			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login,]]></search>
@@ -330,34 +346,6 @@
 		</operation>
 	</file>
 
-	<file name="SOURCEDIR/Profile.php">
-		<!-- Profile BEGIN -->
-		<operation>
-			<search position="before"><![CDATA[
-				'deleteaccount' => array(
-					'label' => $txt['deleteAccount'],
-					'file' => 'Profile-Actions.php',
-					'function' => 'deleteAccount',
-					'sc' => 'post',
-					'password' => true,
-					'permission' => array(
-						'own' => array('profile_remove_any', 'profile_remove_own'),
-						'any' => array('profile_remove_any'),
-					),
-				),]]></search>
-			<add><![CDATA[
-				'checkmember' => array(
-					'label' => $txt['stopspammer_profilecheck'],
-					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID, 'types' => array('mem_id' => '=')))),
-					'enabled' => $cur_profile['id_group'] != 1 && !in_array(1, explode(',', $cur_profile['additional_groups'])),
-					'sc' => 'get',
-					'permission' => array(
-						'own' => array('profile_remove_any', 'profile_remove_own'),
-						'any' => array('profile_remove_any', 'moderate_forum'),
-					),
-				),]]></add>
-		</operation>
-		<!-- Profile END -->
-	</file>
+
 
 </modification>

@@ -20,6 +20,7 @@
 		<database type="file">install.php</database>
 
 		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+		<hook hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 
 		<redirect url="?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
 	</install>
@@ -28,6 +29,7 @@
 		<modification format="xml" type="file" reverse="true">install_2.xml</modification>
 
 		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+		<hook reverse="true" hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 
 		<remove-file name="SOURCEDIR/addons/StopSpammer.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />

@@ -155,6 +155,7 @@ function sprintfspamer(&$value, $url, $index, $type)
 function stopspammer_test_mod_ok()
 {
 	global $txt, $modSettings, $sourcedir;
+	loadLanguage('StopSpammer');
 	
 	// Check first if it's enabled
 	if ($modSettings['stopspammer_enable'] == 1)

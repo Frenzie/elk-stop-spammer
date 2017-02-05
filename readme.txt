@@ -1,14 +1,14 @@
-[b]MOD Stop Spammer v2.3.9
+[b]MOD Stop Spammer v3.0
 ==================[/b]
 
 [table][tr][td][table][tr][td][+][b]Authors:[/b][/td][td][b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=148997]M-DVD[/url][/b] and [b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=68708]snoopy_virtual[/url][/b][/td][/tr]
 
-[tr][td][+][b]Version:[/b][/td][td]2.3.9[/td][/tr]
+[tr][td][+][b]Version:[/b][/td][td]3.0[/td][/tr]
 
-[tr][td][+][b]Release:[/b][/td][td]9th January 2010[/td][/tr]
+[tr][td][+][b]Release:[/b][/td][td]9 February 2017[/td][/tr]
 
-[tr][td][+][b]Compatible With:[/b][/td][td]SMF 1.1.1 - 1.1.12
-SMF 2 RC4[/td][/tr][/table][/td]
+[tr][td][+][b]Compatible With:[/b][/td][td]Elkarte 1.0.x
+Elkarte 1.1.x[/td][/tr][/table][/td]
 
 [td][table]
 
@@ -17,7 +17,7 @@ SMF 2 RC4[/td][/tr][/table][/td]
 [tr][td]          [/td][td]          [/td][/tr]
 [tr][td]          [/td][td][center][color=red][b]IMPORTANT:[/b][/color]
 This MOD works better when used
-together with [url=http://custom.simplemachines.org/mods/index.php?mod=2155][b]MOD httpBL[/b][/url][/center][/td][/tr]
+together with [url=?action=admin;area=securitysettings;sa=badbehavior][b]Bad Behavior[/b][/url][/center][/td][/tr]
 
 [/table]
 [/td][/tr][/table]
@@ -38,10 +38,6 @@ check if it's already in the cue waiting to be done)[/td][/tr][/table]
 
 Thanks to 'Stop Forum Spam' for your DB and APIs.
 
+Thanks to [b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=148997]M-DVD[/url][/b] and [b][url=http://custom.simplemachines.org/mods/index.php?action=profile;u=68708]snoopy_virtual[/url][/b] for writing the original SMF mod.
+
 Thanks to [url=http://www.simplemachines.org/community/index.php?action=profile;u=139580][b]WhatsTheRent[/b][/url] and [url=http://www.simplemachines.org/community/index.php?action=profile;u=130133][b]KahneFan[/b][/url] for idea.
- 
-==========================
-
-[b]Caracteristicas:[/b]
-
-[list][li]Si no sabes como funciona este mod puedes [url=http://custom.simplemachines.org/mods/index.php?mod=1547]ver mas informacion aqui[/url], en el [url=http://www.simplemachines.org/community/index.php?topic=283309.0]hilo oficial de soporte del mod (en ingles)[/url] y en el [url=http://www.simplemachines.org/community/index.php?topic=291588.0]hilo de soporte del mod en nuestro idioma[/url].[/li][/list]
