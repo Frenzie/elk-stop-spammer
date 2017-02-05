@@ -6,27 +6,27 @@
 	<version>3.0</version>
 	<type>modification</type>
 
-	<install for="1.0 - 1.0.99">
+	<install for="1.0 - 1.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<modification format="xml" type="file">install_2.xml</modification>
-		<require-file name="StopSpammer.php" destination="SOURCEDIR/addons" />
-		<require-file name="spammer.gif" destination="IMAGESDIR/icons" />
-		<require-file name="suspect.gif" destination="IMAGESDIR/icons" />
-		<require-file name="moreinfo.gif" destination="IMAGESDIR/icons" />
-		<require-file name="StopSpammer.english.php" destination="LANGUAGEDIR/english">English language strings</require-file>
-		<require-file name="StopSpammer.spanish.php" destination="LANGUAGEDIR/english">Spanish language strings</require-file>
+		<require-file name="sources/StopSpammer.php" destination="SOURCEDIR/addons" />
+		<require-file name="img/spammer.gif" destination="IMAGESDIR/icons" />
+		<require-file name="img/suspect.gif" destination="IMAGESDIR/icons" />
+		<require-file name="img/moreinfo.gif" destination="IMAGESDIR/icons" />
+		<require-file name="languages/StopSpammer.english.php" destination="LANGUAGEDIR/english">English language strings</require-file>
+		<require-file name="languages/StopSpammer.spanish.php" destination="LANGUAGEDIR/spanish">Spanish language strings</require-file>
 		<database type="file">install.php</database>
 		<redirect url="$boardurl/index.php?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
 	</install>
 
-	<uninstall for="1.0 - 1.0.99">
+	<uninstall for="1.0 - 1.1.99">
 		<modification format="xml" type="file" reverse="true">install_2.xml</modification>
 		<remove-file name="SOURCEDIR/addons/StopSpammer.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />
 		<remove-file name="IMAGESDIR/icons/suspect.gif" />
 		<remove-file name="IMAGESDIR/icons/moreinfo.gif" />
 		<remove-file name="LANGUAGEDIR/english/StopSpammer.english.php" />
-		<remove-file name="LANGUAGEDIR/english/StopSpammer.spanish.php" />
+		<remove-file name="LANGUAGEDIR/spanish/StopSpammer.spanish.php" />
 	</uninstall>
 
 </package-info>
