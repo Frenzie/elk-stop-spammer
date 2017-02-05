@@ -20,8 +20,9 @@ function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
 	//$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? "ip={$check_ip}&" : '') . 'username=' . urlencode($check_name) . '&email=' . $check_mail;
 	$remoteXML = 'http://www.stopforumspam.com/api?' . ('127.0.0.1' != $check_ip ? ($modSettings['stopspammer_check_ip'] ? 'ip=' . $check_ip . '&' : '') : '') . ($modSettings['stopspammer_check_name'] ? 'username=' . urlencode($check_name) . '&' : '') . ($modSettings['stopspammer_check_mail'] ? 'email=' . urlencode($check_mail) : '');
 
+	// Need fetch_web_data.
+	require_once(SUBSDIR . '/Package.subs.php');
 	// Try to download.
-	require_once($sourcedir . '/Subs-Package.php');
 	$down_ok = fetch_web_data($remoteXML);
 
 	// Test Host Connection
@@ -156,11 +157,14 @@ function stopspammer_test_mod_ok()
 {
 	global $txt, $modSettings, $sourcedir;
 	loadLanguage('StopSpammer');
-	
+
+	// Prevent $txt['stopspammer_faildb_sub'] is undefined errors.
+	$txt['stopspammer_faildb_sub'] = NULL;
+
 	// Check first if it's enabled
 	if ($modSettings['stopspammer_enable'] == 1)
 	{
-		require_once($sourcedir . '/Subs-Package.php');
+		//require_once($sourcedir . '/Subs-Package.php');
 		
 		// Check connection
 		$lookup = checkDBSpammer('127.0.0.1', 'Test_Conection_DB', 'xxx@xxx.com', true);

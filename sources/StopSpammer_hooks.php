@@ -13,7 +13,6 @@ if (!defined('ELK'))
 
 class StopSpammer_integrate
 {
-
 	public static function modify_registration_settings(&$config_vars)
 	{
 
@@ -116,10 +115,10 @@ class StopSpammer_integrate
 
 */
 
-	public static function profile_areas(&$profile_areas )
+	public static function profile_areas(&$profile_areas)
 	{
+		global $txt, $scripturl, $memID, $modSettings;
 		loadLanguage('StopSpammer');
-
 
 		$profile_areas['profile_action']['areas'] = elk_array_insert($profile_areas['profile_action']['areas'], 'activateaccount', array(
 			'checkmember' => array(
