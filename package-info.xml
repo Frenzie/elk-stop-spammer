@@ -8,25 +8,35 @@
 
 	<install for="1.0 - 1.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
+
 		<modification format="xml" type="file">install_2.xml</modification>
-		<require-file name="sources/StopSpammer.php" destination="SOURCEDIR/addons" />
+		<require-file name="sources/StopSpammer.php" destination="SOURCEDIR/addons/StopSpammer" />
+		<require-file name="sources/StopSpammer_hooks.php" destination="SOURCEDIR/addons/StopSpammer" />
 		<require-file name="img/spammer.gif" destination="IMAGESDIR/icons" />
 		<require-file name="img/suspect.gif" destination="IMAGESDIR/icons" />
 		<require-file name="img/moreinfo.gif" destination="IMAGESDIR/icons" />
 		<require-file name="languages/StopSpammer.english.php" destination="LANGUAGEDIR/english">English language strings</require-file>
 		<require-file name="languages/StopSpammer.spanish.php" destination="LANGUAGEDIR/spanish">Spanish language strings</require-file>
 		<database type="file">install.php</database>
-		<redirect url="$boardurl/index.php?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
+
+		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+
+		<redirect url="?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
 	</install>
 
 	<uninstall for="1.0 - 1.1.99">
 		<modification format="xml" type="file" reverse="true">install_2.xml</modification>
+
+		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+
 		<remove-file name="SOURCEDIR/addons/StopSpammer.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />
 		<remove-file name="IMAGESDIR/icons/suspect.gif" />
 		<remove-file name="IMAGESDIR/icons/moreinfo.gif" />
 		<remove-file name="LANGUAGEDIR/english/StopSpammer.english.php" />
 		<remove-file name="LANGUAGEDIR/spanish/StopSpammer.spanish.php" />
+
+		<redirect url="?action=admin;area=packages;sa=browse" timeout="5000" />
 	</uninstall>
 
 </package-info>
