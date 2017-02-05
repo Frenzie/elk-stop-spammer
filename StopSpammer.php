@@ -1,22 +1,15 @@
 <?php
 
-##########################################
-##		<id>M-DVD:StopSpammer</id>		##
-##		<name>Stop Spammer</name>		##
-##		<version>2.3.9</version>		##
-##		<type>modification</type>		##
-##########################################
-
 /******************************************************************************
 * This program is free software; you may redistribute it and/or modify it     *
-* under the terms of the provided license as published by SMF.                *
+* under the terms of the provided license (GNU v3).                           *
 *******************************************************************************
 * This program is distributed in the hope that it is and will be useful,      *
 * but WITHOUT ANY WARRANTIES; without even any implied warranty of            *
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                        *
 ******************************************************************************/
 
-if (!defined('SMF'))
+if (!defined('ELK'))
 	die('Hacking attempt...');
 
 // This function Check Spammer in DB - MOD StopSpammer
@@ -71,7 +64,7 @@ function checkreportMembers($users, $report)
 
 	foreach ($members_data as $row)
 	{
-		// Condicional (!empty($row['id_member'])) added in version 2.3.7 to avoid the yellow bug
+		// Conditional (!empty($row['id_member'])) added in version 2.3.7 to avoid the yellow bug
 		// The functions loadcheckedMembers 1 and 2 (added in version 2.3) were passing to the array
 		// 		$members_data an empty key at the end. When processing this empty key with the foreach loop,
 		// 		as there was no id_member to send, it was making the function checkDBSpammer to actually
