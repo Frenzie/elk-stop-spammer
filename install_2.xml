@@ -52,12 +52,7 @@ https://github.com/elkarte/Elkarte/blob/1ec92cff034aeae85d3cc51798a2f736dd6f9db5
 
 
 	<file name="SUBSDIR/Members.subs.php">
-		<operation>
-			<search position="after"><![CDATA[
-		'validation_code' => $validation_code,]]></search>
-			<add><![CDATA[
-		'is_spammer' => empty($regOptions['spammer']) ? 0 : $regOptions['spammer'],]]></add>
-		</operation>
+
 
 
 <!--
@@ -69,12 +64,10 @@ https://github.com/elkarte/Elkarte/blob/1ec92cff034aeae85d3cc51798a2f736dd6f9db5
 		</operation>
 		-->
 		<operation>
-			<search position="replace"><![CDATA[
+			<search position="before"><![CDATA[
 			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.member_ip, mem.member_ip2, mem.last_login,
 			mem.posts, mem.is_activated, mem.date_registered, mem.id_group, mem.additional_groups, mg.group_name]]></search>
-			<add><![CDATA[
-			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.member_ip, mem.member_ip2, mem.last_login,
-			mem.posts, mem.is_activated, mem.date_registered, mem.id_group, mem.additional_groups, mg.group_name, mem_is_spammer]]></search>
+			<add><![CDATA[, mem.is_spammer]]></add>
 		</operation>
 	</file>
 

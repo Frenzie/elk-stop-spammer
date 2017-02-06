@@ -30,6 +30,29 @@ class StopSpammer_integrate
 
 
 /*
+		<!--
+		<operation>
+			<search position="after"><![CDATA[
+		'validation_code' => $validation_code,]]></search>
+			<add><![CDATA[
+		'is_spammer' => empty($regOptions['spammer']) ? 0 : $regOptions['spammer'],]]></add>
+		</operation>
+		--><!--
+		<operation>
+			<search position="after"><![CDATA[
+		'validation_code' => substr(hash('sha256', $validation_code), 0, 10),]]></search>
+			<add><![CDATA[
+		'is_spammer' => empty($regOptions['spammer']) ? 0 : $regOptions['spammer'],]]></add>
+		</operation>-->
+*/
+
+	// Err, needed for something, I forgot, lol
+	public function register_check(&$regOptions, &$reg_errors)
+	{
+		$regOptions['is_spammer'] = empty($regOptions['spammer']) ? 0 : $regOptions['spammer'];
+	}
+
+/*
 	<file name="SOURCEDIR/ManageMembers.php">
 		<!--- Load our functions at the beginning of ViewMembers() for every sa we need --->
 		<operation>
