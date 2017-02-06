@@ -13,6 +13,304 @@ if (!defined('ELK'))
 
 class StopSpammer_integrate
 {
+
+/*
+	<file name="SOURCEDIR/ManageMembers.php">
+		<!--- Load our functions at the beginning of ViewMembers() for every sa we need --->
+		<operation>
+			<search position="before"><![CDATA[
+	$_REQUEST['sa'] = isset($_REQUEST['sa']) && isset($subActions[$_REQUEST['sa']]) ? $_REQUEST['sa'] : 'all';
+]]></search>
+			<add><![CDATA[
+	// Load Stop Spammer Functions
+	if ('all' == $_REQUEST['sa'] || 'browse' == $_REQUEST['sa'] || 'query' == $_REQUEST['sa'] || 'approve' == $_REQUEST['sa'])
+	{
+		global $sourcedir;
+		require_once($sourcedir . '/StopSpammer.php');
+	}
+]]></add>
+		</operation>
+*/
+
+	public static function view_members_params(&$params)
+	{
+		
+	}
+
+
+/*
+
+	<file name="SOURCEDIR/ManageMembers.php">
+		<!--- First List - List All Member - BEGIN --->
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'member_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData, $url, \'member_name\', 2);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'real_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData, $url, \'real_name\', 0);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="mailto:%1$s">%1$s</a>',
+						'params' => array(
+							'email_address' => true,
+						),
+					),
+					'class' => 'windowbg',]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = \'mailto:\' . $rowData[\'email_address\'];
+						return sprintfspamer($rowData, $url, \'email_address\', 3);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
+						'params' => array(
+							'member_ip' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
+						return sprintfspamer($rowData, $url, \'member_ip\', 1);
+					'),]]></add>
+		</operation>
+		<!--- First List - List All Member - END --->
+
+		<!--- Second List - List Member Waiting Aproval - BEGIN --->
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
+						'params' => array(
+							'id_member' => false,
+							'member_name' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
+						return sprintfspamer($rowData, $url, \'member_name\', 2);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="mailto:%1$s">%1$s</a>',
+						'params' => array(
+							'email_address' => true,
+						),
+					),
+					'class' => 'windowbg',]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = \'mailto:\' . $rowData[\'email_address\'];
+						return sprintfspamer($rowData, $url, \'email_address\', 3);
+					'),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+					'sprintf' => array(
+						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
+						'params' => array(
+							'member_ip' => false,
+						),
+					),]]></search>
+			<add><![CDATA[
+					'function' => create_function('$rowData', '
+						global $scripturl;
+						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
+						return sprintfspamer($rowData, $url, \'member_ip\', 1);
+					'),]]></add>
+		</operation>
+		<!--- Second List - List Member Waiting Aproval - END --->
+
+		<!--- Leyends, Info and  New Functions - BEGIN --->
+		<!--- Check or report inside ViewMemberlist() (sa = 'all' or 'query') - BEGIN --->
+		<operation>
+			<search position="after"><![CDATA[
+	// Are we performing a delete?]]></search>
+			<add><![CDATA[
+	// Are we performing a check or report?
+	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))
+	{
+		checkSession();
+
+		// Clean the input.
+		foreach ($_POST['delete'] as $key => $value)
+		{
+			$_POST['delete'][$key] = (int) $value;
+			// Don't report yourself, idiot :P
+			if ($value == $user_info['id'] || '1' == $value)
+				unset($_POST['delete'][$key]);
+		}
+
+		$modSettings['registration_method'] = 2;
+
+		// Check and/or Report This Members
+		if (!empty($_POST['delete']))
+			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
+	}
+]]></add>
+		</operation>
+		<!--- Check or report inside ViewMemberlist() (sa = 'all' or 'query') - END --->
+
+		<!--- Check or report inside AdminApprove() (sa = 'approve') - BEGIN --->
+		<operation>
+			<search position="after"><![CDATA[
+	// We also need to the login languages here - for emails.]]></search>
+			<add><![CDATA[
+	// Are we performing a check or report?
+	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['todoAction']))
+	{
+		checkSession();
+
+		// Clean the input.
+		foreach ($_POST['todoAction'] as $key => $value)
+		{
+			$_POST['delete'][$key] = (int) $value;
+			// Don't report yourself, idiot :P
+			if ($value == $user_info['id'] || '1' == $value)
+				unset($_POST['todoAction'][$key]);
+		}
+
+		$modSettings['registration_method'] = 2;
+
+		// Check and/or Report This Members
+		if (!empty($_POST['todoAction']))
+			checkreportMembers($_POST['todoAction'], isset($_POST['spammers_report']));
+	}
+]]></add>
+		</operation>
+		<!--- Check or report inside AdminApprove() (sa = 'approve') - END --->
+
+		<operation>
+			<search position="after"><![CDATA[
+			array(
+				'position' => 'below_table_data',
+				'value' => '<input type="submit" ]]></search>
+			<add><![CDATA[
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="margin: auto" class="leyend_stopspammer">
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+					</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<label>' . $txt['in_stop_forum_spam'] . '</label>
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
+				'class' => 'titlebg','titlebg',
+				'style' => 'text-align: right;',
+			),]]></add>
+		</operation>
+
+		<operation>
+			<search position="after"><![CDATA[
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div class="floatleft">]]></search>
+			<add><![CDATA[
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="margin: auto" class="leyend_stopspammer">
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+					</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<label>' . $txt['in_stop_forum_spam'] . '</label>
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
+				'class' => 'titlebg','titlebg',
+				'style' => 'text-align: right;',
+			),]]></add>
+		</operation>
+
+		<operation>
+			<search position="replace"><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && empty($_POST))]]></search>
+			<add><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && (empty($_POST) || ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))))]]></add>
+		</operation>
+		<!--- Leyends, Info and  New Functions - END --->
+	</file>
+
+
+*/
+
+	public static function list_member_list($listOptions)
+	{
+		
+	}
+
 	public static function modify_registration_settings(&$config_vars)
 	{
 
@@ -81,40 +379,8 @@ class StopSpammer_integrate
 		$config_vars = elk_array_insert($config_vars, 4, $add);
 	}
 
-/*
 
-	<file name="SOURCEDIR/Profile.php">
-		<!-- Profile BEGIN -->
-		<operation>
-			<search position="before"><![CDATA[
-				'deleteaccount' => array(
-					'label' => $txt['deleteAccount'],
-					'file' => 'Profile-Actions.php',
-					'function' => 'deleteAccount',
-					'sc' => 'post',
-					'password' => true,
-					'permission' => array(
-						'own' => array('profile_remove_any', 'profile_remove_own'),
-						'any' => array('profile_remove_any'),
-					),
-				),]]></search>
-			<add><![CDATA[
-				'checkmember' => array(
-					'label' => $txt['stopspammer_profilecheck'],
-					'custom_url' => $scripturl . '?action=admin;area=viewmembers;sa=query;params=' . base64_encode(serialize(array('mem_id' => $memID, 'types' => array('mem_id' => '=')))),
-					'enabled' => $cur_profile['id_group'] != 1 && !in_array(1, explode(',', $cur_profile['additional_groups'])),
-					'sc' => 'get',
-					'permission' => array(
-						'own' => array('profile_remove_any', 'profile_remove_own'),
-						'any' => array('profile_remove_any', 'moderate_forum'),
-					),
-				),]]></add>
-		</operation>
-		<!-- Profile END -->
-	</file>
-
-*/
-
+	// Add "Check this member" under "Action" menu in individual profile view
 	public static function profile_areas(&$profile_areas)
 	{
 		global $txt, $scripturl, $memID, $modSettings;
