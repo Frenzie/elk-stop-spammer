@@ -47,7 +47,7 @@ class StopSpammer_integrate
 */
 
 
-	public function register_check(&$regOptions, &$reg_errors)
+	public static function register_check(&$regOptions, &$reg_errors)
 	{
 		global $modSettings;
 
