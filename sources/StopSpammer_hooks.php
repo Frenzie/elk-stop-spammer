@@ -78,61 +78,6 @@ class StopSpammer_integrate
 
 /*
 
-
-
-
-		<!--- Second List - List Member Waiting Aproval - BEGIN --->
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
-						'params' => array(
-							'id_member' => false,
-							'member_name' => false,
-						),
-					),]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
-						return sprintfspamer($rowData, $url, \'member_name\', 2);
-					'),]]></add>
-		</operation>
-
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="mailto:%1$s">%1$s</a>',
-						'params' => array(
-							'email_address' => true,
-						),
-					),
-					'class' => 'windowbg',]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = \'mailto:\' . $rowData[\'email_address\'];
-						return sprintfspamer($rowData, $url, \'email_address\', 3);
-					'),]]></add>
-		</operation>
-
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
-						'params' => array(
-							'member_ip' => false,
-						),
-					),]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
-						return sprintfspamer($rowData, $url, \'member_ip\', 1);
-					'),]]></add>
-		</operation>
-		<!--- Second List - List Member Waiting Aproval - END --->
-
 		<!--- Leyends, Info and  New Functions - BEGIN --->
 		<!--- Check or report inside ViewMemberlist() (sa = 'all' or 'query') - BEGIN --->
 		<operation>
@@ -277,6 +222,14 @@ class StopSpammer_integrate
 
 */
 
+
+	// Add check icons, same as regular member list
+	public static function list_approve_list(&$listOptions)
+	{
+		return self::list_member_list($listOptions);
+	}
+
+	// Add check icons
 	public static function list_member_list(&$listOptions)
 	{
 		global $txt, $modSettings;
