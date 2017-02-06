@@ -17,7 +17,7 @@ class StopSpammer_integrate
 	// Add link to Stop Spammer settings (under registration settings) to add-on settings
 	public static function general_mod_settings(&$config_vars)
 	{
-		global $txt; // need $txt 'cause loadLanguage only fills in the setting's name
+		global $txt;
 		loadLanguage('StopSpammer');
 
 		$add = array(
@@ -135,89 +135,7 @@ class StopSpammer_integrate
 	}
 ]]></add>
 		</operation>
-		<!--- Check or report inside AdminApprove() (sa = 'approve') - END --->
 
-		<operation>
-			<search position="after"><![CDATA[
-			array(
-				'position' => 'below_table_data',
-				'value' => '<input type="submit" ]]></search>
-			<add><![CDATA[
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
-				'class' => 'titlebg',
-			),
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<div style="margin: auto" class="leyend_stopspammer">
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
-					</div>',
-				'class' => 'titlebg',
-			),
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<label>' . $txt['in_stop_forum_spam'] . '</label>
-					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
-					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
-				'class' => 'titlebg','titlebg',
-				'style' => 'text-align: right;',
-			),]]></add>
-		</operation>
-
-		<operation>
-			<search position="after"><![CDATA[
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<div class="floatleft">]]></search>
-			<add><![CDATA[
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
-				'class' => 'titlebg',
-			),
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<div style="margin: auto" class="leyend_stopspammer">
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
-						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
-					</div>',
-				'class' => 'titlebg',
-			),
-			!$modSettings['stopspammer_enable'] ? '' :
-			array(
-				'position' => 'below_table_data',
-				'value' => '
-					<label>' . $txt['in_stop_forum_spam'] . '</label>
-					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
-					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
-				'class' => 'titlebg','titlebg',
-				'style' => 'text-align: right;',
-			),]]></add>
-		</operation>
-
-		<operation>
-			<search position="replace"><![CDATA[
-	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && empty($_POST))]]></search>
-			<add><![CDATA[
-	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && (empty($_POST) || ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))))]]></add>
-		</operation>
-		<!--- Leyends, Info and  New Functions - END --->
-	</file>
 
 
 */
@@ -286,6 +204,59 @@ class StopSpammer_integrate
 			$url = strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=' . $rowData['member_ip'];
 			return sprintfspamer($rowData, $url, 'member_ip', 1);
 		};
+
+/*
+
+		<!--- Check or report inside AdminApprove() (sa = 'approve') - END --->
+
+
+
+		<operation>
+			<search position="replace"><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && empty($_POST))]]></search>
+			<add><![CDATA[
+	if ($context['sub_action'] == 'query' && !empty($_REQUEST['params']) && (empty($_POST) || ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))))]]></add>
+		</operation>
+		<!--- Leyends, Info and  New Functions - END --->
+	</file>
+
+ * */
+
+		//print_r($listOptions['additional_rows']);
+		//$listOptions['additional_rows'][0]
+
+		$add = array( !$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="text-align: center">' . $modSettings['stopspammer_count'] . ' ' . $txt['stopspammer_count'] . '</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<div style="margin: auto" class="leyend_stopspammer">
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/moreinfo.gif" alt="Icon MoreInfo" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd01'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/suspect.gif" alt="Icon Suspect" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd02'] . '<br />
+						<img src="' . $GLOBALS['settings']['default_images_url'] . '/icons/spammer.gif" alt="Icon Spammer" style="vertical-align: middle" /> ' . $txt['stopspammer_leyd03'] . '<br />
+					</div>',
+				'class' => 'titlebg',
+			),
+			!$modSettings['stopspammer_enable'] ? '' :
+			array(
+				'position' => 'below_table_data',
+				'value' => '
+					<label>' . $txt['in_stop_forum_spam'] . '</label>
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
+				'class' => 'titlebg','titlebg',
+				'style' => 'text-align: right;',
+			),
+		);
+		$listOptions['additional_rows'] = array_merge($listOptions['additional_rows'], $add);
+		//print_r($listOptions['additional_rows']);
+
 	}
 
 	// Add Stop Spammer settings under registration settings

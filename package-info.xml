@@ -27,7 +27,7 @@
 		<hook hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 		<hook hook="integrate_register_check" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::register_check" />
 
-		<redirect url="?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
+		<redirect url="?action=admin;area=regcenter;sa=settings#stopspammer_enable" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
 	</install>
 
 	<uninstall for="1.0 - 1.1.99">
