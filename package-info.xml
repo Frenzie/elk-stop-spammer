@@ -19,6 +19,8 @@
 		<require-file name="languages/StopSpammer.spanish.php" destination="LANGUAGEDIR/spanish">Spanish language strings</require-file>
 		<database type="file">install.php</database>
 
+		<hook hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
+		<hook hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
 		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
 		<hook hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 
@@ -28,6 +30,8 @@
 	<uninstall for="1.0 - 1.1.99">
 		<modification format="xml" type="file" reverse="true">install_2.xml</modification>
 
+		<hook reverse="true" hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
+		<hook reverse="true" hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
 		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
 		<hook reverse="true" hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 

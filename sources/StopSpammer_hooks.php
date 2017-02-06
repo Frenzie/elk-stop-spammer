@@ -40,75 +40,8 @@ class StopSpammer_integrate
 
 /*
 
-	<file name="SOURCEDIR/ManageMembers.php">
-		<!--- First List - List All Member - BEGIN --->
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
-						'params' => array(
-							'id_member' => false,
-							'member_name' => false,
-						),
-					),]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
-						return sprintfspamer($rowData, $url, \'member_name\', 2);
-					'),]]></add>
-		</operation>
 
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=profile;u=%1$d">%2$s</a>',
-						'params' => array(
-							'id_member' => false,
-							'real_name' => false,
-						),
-					),]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=profile;u=\' . $rowData[\'id_member\'];
-						return sprintfspamer($rowData, $url, \'real_name\', 0);
-					'),]]></add>
-		</operation>
 
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="mailto:%1$s">%1$s</a>',
-						'params' => array(
-							'email_address' => true,
-						),
-					),
-					'class' => 'windowbg',]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = \'mailto:\' . $rowData[\'email_address\'];
-						return sprintfspamer($rowData, $url, \'email_address\', 3);
-					'),]]></add>
-		</operation>
-
-		<operation>
-			<search position="replace"><![CDATA[
-					'sprintf' => array(
-						'format' => '<a href="' . strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=%1$s">%1$s</a>',
-						'params' => array(
-							'member_ip' => false,
-						),
-					),]]></search>
-			<add><![CDATA[
-					'function' => create_function('$rowData', '
-						global $scripturl;
-						$url = strtr($scripturl, array(\'%\' => \'%%\')) . \'?action=trackip;searchip=\' . $rowData[\'member_ip\'];
-						return sprintfspamer($rowData, $url, \'member_ip\', 1);
-					'),]]></add>
-		</operation>
-		<!--- First List - List All Member - END --->
 
 		<!--- Second List - List Member Waiting Aproval - BEGIN --->
 		<operation>
@@ -306,9 +239,62 @@ class StopSpammer_integrate
 
 */
 
-	public static function list_member_list($listOptions)
+	public static function list_member_list(&$listOptions)
 	{
+		global $txt, $modSettings;
+		loadLanguage('StopSpammer');
+		// Helper functions
+		require_once(SOURCEDIR .'/addons/StopSpammer/StopSpammer.php');
+
+		// user_name
+		// unset the sprintf default
+		unset($listOptions['columns']['user_name']['data']['sprintf']);
 		
+		// replace with a function
+		$listOptions['columns']['user_name']['data']['function'] = function($rowData)
+		{
+			global $scripturl;
+			$url = strtr($scripturl, array('%' => '%%')) . '?action=profile;u=' . $rowData['id_member'];
+			return sprintfspamer($rowData, $url, 'member_name', 2);
+		};
+
+/*
+		// display_name
+		// unset the sprintf default
+		unset($listOptions['columns']['display_name']['data']['sprintf']);
+		
+		// replace with a function
+		$listOptions['columns']['display_name']['data']['function'] = function($rowData)
+		{
+			global $scripturl;
+			$url = strtr($scripturl, array('%' => '%%')) . '?action=profile;u=' . $rowData['id_member'];
+			return sprintfspamer($rowData, $url, 'real_name', 0);
+		};
+*/
+
+		// email
+		// unset the sprintf default
+		unset($listOptions['columns']['email']['data']['sprintf']);
+		
+		// replace with a function
+		$listOptions['columns']['email']['data']['function'] = function($rowData)
+		{
+			global $scripturl;
+			$url = 'mailto:' . $rowData['email_address'];
+			return sprintfspamer($rowData, $url, 'email_address', 3);
+		};
+
+		// ip
+		// unset the sprintf default
+		unset($listOptions['columns']['ip']['data']['sprintf']);
+		
+		// replace with a function
+		$listOptions['columns']['ip']['data']['function'] = function($rowData)
+		{
+			global $scripturl;
+			$url = strtr($scripturl, array('%' => '%%')) . '?action=trackip;searchip=' . $rowData['member_ip'];
+			return sprintfspamer($rowData, $url, 'member_ip', 1);
+		};
 	}
 
 	public static function modify_registration_settings(&$config_vars)
