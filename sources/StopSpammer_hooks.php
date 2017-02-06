@@ -46,10 +46,55 @@ class StopSpammer_integrate
 		</operation>-->
 */
 
-	// Err, needed for something, I forgot, lol
+
 	public function register_check(&$regOptions, &$reg_errors)
 	{
+		global $modSettings;
+
+
+
+
+
+/*
+	<file name="SOURCEDIR/Register.php">
+		<operation>
+			<search position="after"><![CDATA[
+	// Include the additional options that might have been filled in.]]></search>
+			<add><![CDATA[
+	// Is Spammer? Then should be approval
+	if ($modSettings['stopspammer_enable'])
+	{
+		require_once($sourcedir . '/StopSpammer.php');
+		if ($regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
+		{
+			$regOptions['require'] = 'approval';
+			$modSettings['registration_method'] = 2;
+			if ($regOptions['spammer'] != 8)
+				updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+		}
+	}
+]]></add>
+		</operation>
+	</file>
+*/
+		// Member should be moved to approval if they are a spammer.
+		if ($modSettings['stopspammer_enable'])
+		{
+			// Helper functions
+			require_once(SOURCEDIR .'/addons/StopSpammer/StopSpammer.php');
+			if ($regOptions['spammer'] = checkDBSpammer($regOptions['ip'], $regOptions['username'], $regOptions['email']))
+			{
+				$regOptions['require'] = 'approval';
+				$modSettings['registration_method'] = 2;
+				if ($regOptions['spammer'] != 8)
+					updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+			}
+		}
+
+
+		// Err, why not just set it to 0 above?
 		$regOptions['is_spammer'] = empty($regOptions['spammer']) ? 0 : $regOptions['spammer'];
+
 	}
 
 /*

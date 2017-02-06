@@ -7,26 +7,7 @@
 
 
 
-	<file name="SOURCEDIR/Register.php">
-		<operation>
-			<search position="after"><![CDATA[
-	// Include the additional options that might have been filled in.]]></search>
-			<add><![CDATA[
-	// Is Spammer? Then should be approval
-	if ($modSettings['stopspammer_enable'])
-	{
-		require_once($sourcedir . '/StopSpammer.php');
-		if ($regOptions['spammer'] = checkDBSpammer($user_info['ip'], $_POST['user'], $_POST['email']))
-		{
-			$regOptions['require'] = 'approval';
-			$modSettings['registration_method'] = 2;
-			if ($regOptions['spammer'] != 8)
-				updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
-		}
-	}
-]]></add>
-		</operation>
-	</file>
+
 
 
 <!-- let's see what to do about this

@@ -2,7 +2,7 @@
 //	MOD Stop Spammer - START
 $txt['stopspammer_error'] = 'Error with Anti SPAM DB. Connection Failed.<br />
 Please try again later, or Contact with the WebMaster';
-$txt['stopspammer_count'] = 'Spammers blocked up until today';
+$txt['stopspammer_count'] = 'Spammers blocked so far';
 $txt['stopspammer_title'] = 'Search more info in `Stop Forum Spam`';
 
 $txt['stopspammer_enable'] = 'Enable/Disable MOD Stop Spammer';
@@ -18,18 +18,18 @@ $txt['stopspammer_faildb2_sub'] = 'Your host couldn\'t make connection with the 
 If this error continues see Support Topic and search ';
 $txt['stopspammer_not_translate'] = '<a href="http://www.simplemachines.org/community/index.php?topic=283309.msg1920848#post_issues"><span class="error"><b>Known Issues</b></span></a>';
 
-$txt['stopspammer_leyd01'] = 'Not Spammer: This data wasn\'t in a DB. But you can check';
-$txt['stopspammer_leyd02'] = 'Suspect: This member couldn\'t be checked. Check now';
-$txt['stopspammer_leyd03'] = 'Spammer: See more info of activity of this spammer';
+$txt['stopspammer_leyd01'] = 'No spammer: this data wasn\'t in a DB. But you can check.';
+$txt['stopspammer_leyd02'] = 'Suspect: this member couldn\'t be checked. Check now.';
+$txt['stopspammer_leyd03'] = 'Spammer: there is more information about this spammer\'s activity.';
 
 $txt['stopspammer_profilecheck'] = 'Check this member';
-$txt['stopspammer_limitexceded'] = 'You have exceded the check limit (5000 API queries per day).<br />You should wait until tomorrow to check again.';
+$txt['stopspammer_limitexceded'] = 'You have exceeded the check limit (5000 API queries per day).<br />You should wait until tomorrow to check again.';
 
 $txt['in_stop_forum_spam'] = 'In Stop Forum Spam Web:';
-$txt['spammers_checks'] = 'Check these Members';
-$txt['spammers_report'] = 'Report these Members';
+$txt['spammers_checks'] = 'Check these members';
+$txt['spammers_report'] = 'Report these members';
 $txt['confirm_spammers_checks'] = 'Are you sure you want to check the selected members?';
-$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nThink that when you report a member to SFS they are marked as spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS around the world.\n\nDo it only if you are completely sure they are spammers and if by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
+$txt['confirm_spammers_report'] = 'Are you sure you want to report the selected members?\n\nWhen you report a member to SFS, they are marked as a spammer all over the world\nand they won\\\'t be able to use any of the forums connected to SFS.\n\nReport them only if you are completely sure they are spammers. If by any chance you make a mistake\ntell as soon as possible the mod\\\'s creator to correct the mistake inside the SFS database.';
 
 $txt['stopspammer_api_key'] = 'Your API key';
 
