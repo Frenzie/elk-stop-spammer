@@ -21,7 +21,8 @@
 
 		<hook hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
 		<hook hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
-		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::general_mod_settings" />
+		<hook hook="integrate_modify_registration_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
 		<hook hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 
 		<redirect url="?action=admin;area=regcenter;sa=settings" type="inline">Please stand by while you are being redirected to this modification's configuration settings.</redirect>
@@ -32,10 +33,12 @@
 
 		<hook reverse="true" hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
 		<hook reverse="true" hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
-		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
+		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::general_mod_settings" />
+		<hook reverse="true" hook="integrate_modify_registration_settings" file="SO
 		<hook reverse="true" hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 
-		<remove-file name="SOURCEDIR/addons/StopSpammer.php" />
+		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer.php" />
+		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />
 		<remove-file name="IMAGESDIR/icons/suspect.gif" />
 		<remove-file name="IMAGESDIR/icons/moreinfo.gif" />
