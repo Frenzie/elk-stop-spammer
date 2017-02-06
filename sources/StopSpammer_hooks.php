@@ -97,6 +97,13 @@ class StopSpammer_integrate
 
 	}
 
+	// integrate_register
+	public static function register(&$regOptions, &$theme_vars, &$knownInts, &$knownFloats)
+	{
+		// Add `is_spammer` to the list of stuff to insert into the DB.
+		$knownInts[] = 'is_spammer';
+	}
+
 /*
 	<file name="SOURCEDIR/ManageMembers.php">
 		<!--- Load our functions at the beginning of ViewMembers() for every sa we need --->
