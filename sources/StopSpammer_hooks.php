@@ -29,6 +29,30 @@ class StopSpammer_integrate
 	}
 
 
+
+
+
+
+	// Always show members waiting for approval (if there are any)
+	public static function load_theme()
+	{
+		global $context, $modSettings, $scripturl, $txt;
+
+		// Are there any members waiting for approval?
+		if (allowedTo('moderate_forum') && (!empty($modSettings['unapprovedMembers'])))
+		{
+			$context['warning_controls']['unapproved_members'] = sprintf($txt[$modSettings['unapprovedMembers'] == 1 ? 'approve_one_member_waiting' : 'approve_many_members_waiting'], $scripturl . '?action=admin;area=viewmembers;sa=browse;type=approve', $modSettings['unapprovedMembers']);
+		}
+
+		// Finally, let's show the layer.
+		if (!empty($context['warning_controls']))
+		{
+			\Template_Layers::getInstance()->addAfter('admin_warning', 'body');
+		}
+	}
+
+
+
 /*
 		<!--
 		<operation>

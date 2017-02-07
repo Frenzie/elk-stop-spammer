@@ -5,36 +5,7 @@
 	<name>Stop Spammer</name>
 	<version>2.3.9</version>
 
-
-
-
-
-
-<!-- let's see what to do about this
-
-https://github.com/elkarte/Elkarte/blob/1ec92cff034aeae85d3cc51798a2f736dd6f9db5/sources/Load.php#L2729-L2731
-
-	// Are there any members waiting for approval?
-	if (allowedTo('moderate_forum') && ((!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2) || !empty($modSettings['approveAccountDeletion'])) && !empty($modSettings['unapprovedMembers']))
-		$context['warning_controls']['unapproved_members'] = sprintf($txt[$modSettings['unapprovedMembers'] == 1 ? 'approve_one_member_waiting' : 'approve_many_members_waiting'], $scripturl . '?action=admin;area=viewmembers;sa=browse;type=approve', $modSettings['unapprovedMembers']);
--->
-
-	<file name="SOURCEDIR/Subs.php">
-		<operation>
-			<search position="replace"><![CDATA[
-			$context['unapproved_members'] = (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 2) || !empty($modSettings['approveAccountDeletion']) ? $modSettings['unapprovedMembers'] : 0;]]></search>
-			<add><![CDATA[
-			$context['unapproved_members'] = $modSettings['unapprovedMembers'];]]></add>
-		</operation>
-	</file>
-
-
-
-
-
 	<file name="SUBSDIR/Members.subs.php">
-
-
 
 <!--
 		<operation>
@@ -51,7 +22,5 @@ https://github.com/elkarte/Elkarte/blob/1ec92cff034aeae85d3cc51798a2f736dd6f9db5
 			<add><![CDATA[, mem.is_spammer]]></add>
 		</operation>
 	</file>
-
-
 
 </modification>
