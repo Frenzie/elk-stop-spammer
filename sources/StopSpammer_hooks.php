@@ -77,6 +77,9 @@ class StopSpammer_integrate
 		</operation>
 	</file>
 */
+		// default to no spammer
+		$regOptions['spammer'] = 0;
+
 		// Member should be moved to approval if they are a spammer.
 		if ($modSettings['stopspammer_enable'])
 		{
@@ -87,20 +90,25 @@ class StopSpammer_integrate
 				$regOptions['require'] = 'approval';
 				$modSettings['registration_method'] = 2;
 				if ($regOptions['spammer'] != 8)
+				{
 					updateSettings(array('stopspammer_count' => ++$modSettings['stopspammer_count']), true);
+				}
 			}
 		}
 
-
+//print_r($regOptions);
 		// Err, why not just set it to 0 above?
-		$regOptions['is_spammer'] = empty($regOptions['spammer']) ? 0 : $regOptions['spammer'];
+		//$regOptions['is_spammer'] = empty($regOptions['spammer']) ? 0 : $regOptions['spammer'];
 
 	}
 
 	// integrate_register
 	public static function register(&$regOptions, &$theme_vars, &$knownInts, &$knownFloats)
 	{
-		// Add `is_spammer` to the list of stuff to insert into the DB.
+		// Add 'is_spammer' to the array of 'register_vars' to be inserted into the DB
+		$regOptions['register_vars']['is_spammer'] = $regOptions['spammer'];
+
+		// Add `is_spammer` to query of stuff to insert into the DB.
 		$knownInts[] = 'is_spammer';
 	}
 
