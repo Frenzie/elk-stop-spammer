@@ -30,10 +30,14 @@ function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
 
 	// Connection Failed
 	if (!$down_ok)
-		if ($modSettings['stopspammer_faildb']) 
+		if ($modSettings['stopspammer_faildb'])
+		{
 			return ('1' == $modSettings['stopspammer_faildb'] ? 0 : 8);
-		else 
+		}
+		else
+		{
 			fatal_lang_error('stopspammer_error');
+		}
 
 	// Limit Exceded?
 	if (strpos($down_ok, 'rate limit exceeded')) //  || 	strpos($down_ok, '<error>')
@@ -74,7 +78,12 @@ function checkreportMembers($users, $report)
 				// Change requested by Stop Forum Spam Admin due to the amount of people
 				// 		reporting spammers wrongly with the "default" API key
 				if ($modSettings['stopspammer_api_key'] == '')
-					fatal_lang_error('stopspammer_error_no_api_key');
+				{
+					loadLanguage('StopSpammer');
+					// need fatal_error()
+					require_once(SOURCEDIR . '/Errors.php');
+					fatal_error('stopspammer_error_no_api_key');
+				}
 				else
 				{
 					// Need fetch_web_data.

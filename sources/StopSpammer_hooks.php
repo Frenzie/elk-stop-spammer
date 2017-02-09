@@ -407,9 +407,11 @@ $subActions['spammers_check'] = array(
 				'value' => '
 <input type="hidden" id="stop_spammer_maction_on_members">
 					<label>' . $txt['in_stop_forum_spam'] . '</label>
-					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
-<button name="maction" value="spammers_check" type="submit" onclick="$(\'#stop_spammer_maction_on_members\').attr(\'name\',\'maction_on_members\').attr(\'value\',true);">checkcheck</button>
-					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
+
+<button name="maction" value="spammers_check" type="submit" onclick="if (confirm(\'' . $txt['confirm_spammers_checks'] . '\') ) { $(\'#stop_spammer_maction_on_members\').attr(\'name\',\'maction_on_members\').attr(\'value\',true) } else {return false;}">' . $txt['spammers_checks'] . '</button>
+
+<button name="maction" value="spammers_report" type="submit" onclick="if (confirm(\'' . $txt['confirm_spammers_report'] . '\') ) { $(\'#stop_spammer_maction_on_members\').attr(\'name\',\'maction_on_members\').attr(\'value\',true) } else {return false;}">' . $txt['spammers_report'] . '</button>
+',
 				'class' => 'titlebg','titlebg',
 				'style' => 'text-align: right;',
 			),
