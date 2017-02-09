@@ -156,7 +156,86 @@ class StopSpammer_integrate
 
 	public static function view_members_params(&$params)
 	{
-		
+		print_r($params);
+		/*
+	// Are we performing a check or report?
+	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))
+	{
+		checkSession();
+
+		// Clean the input.
+		foreach ($_POST['delete'] as $key => $value)
+		{
+			$_POST['delete'][$key] = (int) $value;
+			// Don't report yourself, idiot :P
+			if ($value == $user_info['id'] || '1' == $value)
+				unset($_POST['delete'][$key]);
+		}
+
+		$modSettings['registration_method'] = 2;
+
+		// Check and/or Report This Members
+		if (!empty($_POST['delete']))
+			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
+	}*/
+
+
+		// @todo add a token too?
+		checkSession();
+		// Clean the input.
+		$members = array();
+		foreach ($this->_req->post->members as $value)
+		{
+			// Don't delete yourself, idiot.
+			if ($this->_req->post->maction === 'delete' && $value == $user_info['id'])
+				continue;
+			$members[] = (int) $value;
+		}
+		$members = array_filter($members);
+		// No members, nothing to do.
+		if (empty($members))
+			return;
+		checkreportMembers($this->_req->post->maction === 'delete', $this->_req->post->maction === 'spammers_report');
+
+
+
+	}
+
+
+
+	public static function manage_members(&$subActions)
+	{
+		/*
+				$subActions = array(
+			'all' => array(
+				'controller' => $this,
+				'function' => 'action_list',
+				'permission' => 'moderate_forum'),
+			'approve' => array(
+				'controller' => $this,
+				'function' => 'action_approve',
+				'permission' => 'moderate_forum'),
+			'browse' => array(
+				'controller' => $this,
+				'function' => 'action_browse',
+				'permission' => 'moderate_forum'),
+			'search' => array(
+				'controller' => $this,
+				'function' => 'action_search',
+				'permission' => 'moderate_forum'),
+			'query' => array(
+				'controller' => $this,
+				'function' => 'action_list',
+				'permission' => 'moderate_forum'),
+		);*/
+/*require_once(CONTROLLERDIR .'/StopSpammer.controller.php');
+//print('test');
+$subActions['spammers_check'] = array(
+				'controller' => new StopSpammer_controller(),
+				'function' => 'action_list',
+				'permission' => 'moderate_forum');*/
+//print_r($subActions);
+//$subActions[]['report'] = array('StopSpammer.controller.php', 'Pages_Controller', 'action_index');
 	}
 
 
@@ -332,7 +411,7 @@ class StopSpammer_integrate
 				'position' => 'below_table_data',
 				'value' => '
 					<label>' . $txt['in_stop_forum_spam'] . '</label>
-					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" /><button name="maction" value="spammers_check" type="submit">checkcheck</button>
 					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
 				'class' => 'titlebg','titlebg',
 				'style' => 'text-align: right;',

@@ -11,6 +11,7 @@
 
 		<modification format="xml" type="file">install_2.xml</modification>
 		<require-file name="sources/StopSpammer.php" destination="SOURCEDIR/addons/StopSpammer" />
+		<require-file name="sources/StopSpammer.controller.php" destination="SOURCEDIR/addons/StopSpammer" />
 		<require-file name="sources/StopSpammer_hooks.php" destination="SOURCEDIR/addons/StopSpammer" />
 		<require-file name="img/spammer.gif" destination="IMAGESDIR/icons" />
 		<require-file name="img/suspect.gif" destination="IMAGESDIR/icons" />
@@ -22,6 +23,7 @@
 		<hook hook="integrate_load_theme" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::load_theme" />
 		<hook hook="integrate_list_approve_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_approve_list" />
 		<hook hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
+		<hook hook="integrate_manage_members" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::manage_members" />
 		<hook hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
 		<hook hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::general_mod_settings" />
 		<hook hook="integrate_modify_registration_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
@@ -38,6 +40,7 @@
 		<hook reverse="true" hook="integrate_load_theme" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::load_theme" />
 		<hook reverse="true" hook="integrate_list_approve_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_approve_list" />
 		<hook reverse="true" hook="integrate_list_member_list" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::list_member_list" />
+		<hook reverse="true" hook="integrate_manage_members" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::manage_members" />
 		<hook reverse="true" hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
 		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::general_mod_settings" />
 		<hook reverse="true" hook="integrate_modify_registration_settings" file="SO
@@ -46,6 +49,7 @@
 		<hook reverse="true" hook="integrate_register" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::register" />
 
 		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer.php" />
+		<remove-file name="SOURCEDIR/addons/StopSpammer.controller.php" />
 		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />
 		<remove-file name="IMAGESDIR/icons/suspect.gif" />
