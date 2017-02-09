@@ -43,7 +43,7 @@
 		<hook reverse="true" hook="integrate_manage_members" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::manage_members" />
 		<hook reverse="true" hook="integrate_view_members_params" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::view_members_params" />
 		<hook reverse="true" hook="integrate_general_mod_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::general_mod_settings" />
-		<hook reverse="true" hook="integrate_modify_registration_settings" file="SO
+		<hook reverse="true" hook="integrate_modify_registration_settings" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::modify_registration_settings" />
 		<hook reverse="true" hook="integrate_profile_areas" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::profile_areas" />
 		<hook reverse="true" hook="integrate_register_check" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::register_check" />
 		<hook reverse="true" hook="integrate_register" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::register" />
