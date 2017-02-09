@@ -1,55 +1,26 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-	<id>M-DVD:StopSpammer</id>
+	<id>Frenzie:StopSpammer</id>
 	<name>Stop Spammer</name>
-	<version>2.3.9</version>
+	<version>3.0</version>
 
 	<file name="ADMINDIR/ManageMembers.controller.php">
 		<operation>
 			<search position="after"><![CDATA[
 		// Are we performing a delete?]]></search>
-			<!--<add><![CDATA[
-	// Are we performing a check or report?
-	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))
-	{
-		checkSession();
-		// Clean the input.
-		foreach ($_POST['delete'] as $key => $value)
-		{
-			$_POST['delete'][$key] = (int) $value;
-			// Don't report yourself, idiot :P
-			if ($value == $user_info['id'] || '1' == $value)
-				unset($_POST['delete'][$key]);
-		}
-		$modSettings['registration_method'] = 2;
-		// Check and/or Report This Members
-		if (!empty($_POST['delete']))
-			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
-	}
-]]></add>-->
 			<add><![CDATA[
 		// Are we performing a check or report?
-		if ($this->_req->post->maction == 'spammers_checks' || $this->_req->post->maction == 'spammers_report')
+		if ($this->_req->post->maction == 'spammers_check' || $this->_req->post->maction == 'spammers_report')
 		{
+			require_once(SOURCEDIR .'/addons/StopSpammer/StopSpammer.php');
 			checkreportMembers($members, $this->_req->post->maction == 'spammers_report');
 		}
 ]]></add>
 		</operation>
 	</file>
 
-
-
 	<file name="SUBSDIR/Members.subs.php">
-
-<!--
-		<operation>
-			<search position="replace"><![CDATA[
-			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login,]]></search>
-			<add><![CDATA[
-			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.icq, mem.aim, mem.yim, mem.msn, mem.member_ip, mem.member_ip2, mem.last_login, mem.is_spammer,]]></add>
-		</operation>
-		-->
 		<operation>
 			<search position="before"><![CDATA[
 			mem.id_member, mem.member_name, mem.real_name, mem.email_address, mem.member_ip, mem.member_ip2, mem.last_login,

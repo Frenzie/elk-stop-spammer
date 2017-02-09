@@ -61,8 +61,8 @@ function checkreportMembers($users, $report)
 		require_once($sourcedir . '/Subs-Package.php');
 
 	// Read data of Group Users
-	$members_data = empty($smcFunc['db_query']) ? loadcheckedMembers_1($users) : loadcheckedMembers_2($users);
-
+	$members_data = loadcheckedMembers($users);
+print_r($members_data);
 	foreach ($members_data as $row)
 	{
 		// Conditional (!empty($row['id_member'])) added in version 2.3.7 to avoid the yellow bug
@@ -100,37 +100,22 @@ function checkreportMembers($users, $report)
 	updateSettings(array('stopspammer_count' => $modSettings['stopspammer_count']), true);
 }
 
-function loadcheckedMembers_1($users)
+function loadcheckedMembers($users)
 {
-	global $db_prefix;
+	$db = database();
 
-	// Read data of Group Users
-	$row = array();
-	$resource = db_query("
-		SELECT ID_MEMBER AS id_member, memberName AS member_name, emailAddress AS email_address, memberIP AS member_ip, is_spammer
-			FROM {$db_prefix}members
-			WHERE ID_MEMBER " . (is_array($users) ? 'IN (' . implode(',', $users) . ')' : '= ' . $users)
-		, __FILE__, __LINE__);
-	while ($row[] = mysql_fetch_assoc($resource)) {};
-	mysql_free_result($resource);
-	return $row;
-}
-
-function loadcheckedMembers_2($users)
-{
-	global $smcFunc, $db_prefix;
-
-	// Read data of Group Users
-	$row = array();
-	$resource = $smcFunc['db_query']('', '
+	$temp = array();
+	$result = $db->query('','
 		SELECT id_member, member_name, email_address, member_ip, is_spammer
 			FROM {db_prefix}members
 			WHERE id_member {raw:where}',
 		array('where' => is_array($users) ? 'IN (' . implode(',', $users) . ')' : '= ' . $users)
 	);
-	while ($row[] = $smcFunc['db_fetch_assoc']($resource)) {};
-	$smcFunc['db_free_result']($resource);
-	return $row;
+	while ($row = $db->fetch_assoc($result))
+		$temp[] = $row;
+	$db->free_result($result);
+
+	return $temp;
 }
 
 function sprintfspamer(&$value, $url, $index, $type)

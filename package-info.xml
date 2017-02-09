@@ -49,7 +49,7 @@
 		<hook reverse="true" hook="integrate_register" file="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" function="StopSpammer_integrate::register" />
 
 		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer.php" />
-		<remove-file name="SOURCEDIR/addons/StopSpammer.controller.php" />
+		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer.controller.php" />
 		<remove-file name="SOURCEDIR/addons/StopSpammer/StopSpammer_hooks.php" />
 		<remove-file name="IMAGESDIR/icons/spammer.gif" />
 		<remove-file name="IMAGESDIR/icons/suspect.gif" />

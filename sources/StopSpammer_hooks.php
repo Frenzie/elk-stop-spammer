@@ -410,8 +410,10 @@ $subActions['spammers_check'] = array(
 			array(
 				'position' => 'below_table_data',
 				'value' => '
+<input type="hidden" id="stop_spammer_maction_on_members">
 					<label>' . $txt['in_stop_forum_spam'] . '</label>
-					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" /><button name="maction" value="spammers_check" type="submit">checkcheck</button>
+					<input type="submit" name="spammers_checks" value="' . $txt['spammers_checks'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_checks'] . '\');" />
+<button name="maction" value="spammers_check" type="submit" onclick="$(\'#stop_spammer_maction_on_members\').attr(\'name\',\'maction_on_members\').attr(\'value\',true);">checkcheck</button>
 					<input type="submit" name="spammers_report" value="' . $txt['spammers_report'] . '" onclick="return confirm(\'' . $txt['confirm_spammers_report'] . '\');" />',
 				'class' => 'titlebg','titlebg',
 				'style' => 'text-align: right;',
