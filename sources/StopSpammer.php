@@ -55,14 +55,10 @@ function checkDBSpammer($check_ip, $check_name, $check_mail, $test = false)
 // This function Check & Report Many Members in DB Spammer - MOD StopSpammer
 function checkreportMembers($users, $report)
 {
-	global $db_prefix, $sourcedir, $modSettings, $smcFunc;
-
-	if ($report)
-		require_once($sourcedir . '/Subs-Package.php');
+	global $db_prefix, $sourcedir, $modSettings;
 
 	// Read data of Group Users
 	$members_data = loadcheckedMembers($users);
-print_r($members_data);
 	foreach ($members_data as $row)
 	{
 		// Conditional (!empty($row['id_member'])) added in version 2.3.7 to avoid the yellow bug
@@ -80,24 +76,37 @@ print_r($members_data);
 				if ($modSettings['stopspammer_api_key'] == '')
 					fatal_lang_error('stopspammer_error_no_api_key');
 				else
+				{
+					// Need fetch_web_data.
+					require_once(SUBSDIR . '/Package.subs.php');
 					fetch_web_data('http://www.stopforumspam.com/add', 'username=' . $row['member_name'] . '&ip_addr=' . $row['member_ip'] . '&email=' . $row['email_address'] . '&api_key=' . $modSettings['stopspammer_api_key']);
+				}
 			}
 			else
 			{
 				$is_spammer = checkDBSpammer($row['member_ip'], $row['member_name'], $row['email_address']);
-				if ($row['is_spammer'] != $is_spammer)
+				// is_activated state 3 means needs admin approval
+				// automatically move a positive testing member into approval
+				if ($row['is_spammer'] != $is_spammer || $row['is_activated'] != 3)
 				{
 					// This change from Tom Mortensen sort the bug reported by him:
 					//		Once a member wass marked "yellow" (is_spammer==8) because the mod
 					//		could not access SFS database, that member was always "yellow".
 					if ($is_spammer)
+					{
 						++$modSettings['stopspammer_count'];
-					updateMemberData($row['id_member'], array('is_activated' => 3, 'is_spammer' => $is_spammer));
+						++$modSettings['unapprovedMembers'];
+						// move spammer to needing admin approval
+						updateMemberData($row['id_member'], array('is_activated' => 3));
+					}
+					// update is_spammer, this is outside the if statement because it could be 0!
+					updateMemberData($row['id_member'], array('is_spammer' => $is_spammer));
 				}
 			}
 		}
 	}
 	updateSettings(array('stopspammer_count' => $modSettings['stopspammer_count']), true);
+	updateSettings(array('unapprovedMembers' => $modSettings['unapprovedMembers']), true);
 }
 
 function loadcheckedMembers($users)
@@ -106,7 +115,7 @@ function loadcheckedMembers($users)
 
 	$temp = array();
 	$result = $db->query('','
-		SELECT id_member, member_name, email_address, member_ip, is_spammer
+		SELECT id_member, member_name, email_address, member_ip, is_activated, is_spammer
 			FROM {db_prefix}members
 			WHERE id_member {raw:where}',
 		array('where' => is_array($users) ? 'IN (' . implode(',', $users) . ')' : '= ' . $users)

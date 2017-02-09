@@ -28,11 +28,6 @@ class StopSpammer_integrate
 		$config_vars = array_merge($config_vars, $add);
 	}
 
-
-
-
-
-
 	// Always show members waiting for approval (if there are any)
 	public static function load_theme()
 	{
