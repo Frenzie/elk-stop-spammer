@@ -151,7 +151,7 @@ class StopSpammer_integrate
 
 	public static function view_members_params(&$params)
 	{
-		print_r($params);
+		//print_r($params);
 		/*
 	// Are we performing a check or report?
 	if ((isset($_POST['spammers_checks']) || isset($_POST['spammers_report'])) && !empty($_POST['delete']))
@@ -174,7 +174,7 @@ class StopSpammer_integrate
 			checkreportMembers($_POST['delete'], isset($_POST['spammers_report']));
 	}*/
 
-
+/*
 		// @todo add a token too?
 		checkSession();
 		// Clean the input.
@@ -191,7 +191,7 @@ class StopSpammer_integrate
 		if (empty($members))
 			return;
 		checkreportMembers($this->_req->post->maction === 'delete', $this->_req->post->maction === 'spammers_report');
-
+*/
 
 
 	}
